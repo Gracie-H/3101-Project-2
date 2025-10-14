@@ -1,10 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="zh-CN">
   <head>
-    <meta charset="utf-8" />
-    <title>{{ title }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title or "My Collection Garden" }}</title>
+    <link rel="stylesheet" href="/assets/styles.css">
   </head>
   <body>
-    {{ content }}
+    <header class="site-header">
+      <a href="/">My Collection Garden</a>
+      <nav>
+        <a href="/">All</a>
+      </nav>
+    </header>
+
+    <main class="container">
+      {{ content | safe }}
+    </main>
+
+    <footer class="site-footer">
+      <small>© {{ (site and site.author) or "Author" }}</small>
+    </footer>
   </body>
 </html>

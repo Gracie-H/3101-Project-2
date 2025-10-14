@@ -1,9 +1,68 @@
 ---
-title: Assignment 2 Template
+layout: base.html
+title: Home
 ---
-<h1>Assignment 2 Template</h1>
+<h1>Collection</h1>
 
-<p>
-  This is a main page for your collection site. You can edit
-  its contents and add new pages to this folder.
-</p>
+<div class="filters">
+  <select id="filter-type">
+    <option value="">All types</option>
+    <option>diary</option>
+    <option>film</option>
+    <option>album</option>
+    <option>project</option>
+  </select>
+
+  <select id="filter-year">
+    <option value="">All years</option>
+    {% set years = [] %}
+    {% for p in collections.entry | reverse %}
+      {% set y = (p.date | date("yyyy")) %}
+      {% if years.indexOf(y) == -1 %}
+        {% set years = years.concat([y]) %}
+      {% endif %}
+    {% endfor %}
+    {% for y in years | reverse %}
+      <option value="{{ y }}">{{ y }}</option>
+    {% endfor %}
+  </select>
+</div>
+
+<ul id="post-list" class="grid">
+  {% for post in collections.entry | reverse %}
+    <li
+      class="card"
+      data-type="{{ post.data.type or '' }}"
+      data-year="{{ post.date | date('yyyy') }}"
+      data-tags="{{ (post.data.tags or []) | join(' ') }}"
+    >
+      <a href="{{ post.url }}">
+        {% if post.data.cover %}
+          <img src="{{ post.data.cover }}" alt="">
+        {% endif %}
+        <h3>{{ post.data.title }}</h3>
+        <p class="meta">{{ post.date | date("yyyy-MM-dd") }}</p>
+        <p class="summary">{{ post.data.summary or "" }}</p>
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+
+<script>
+  const typeSel = document.getElementById("filter-type");
+  const yearSel = document.getElementById("filter-year");
+  const cards = Array.from(document.querySelectorAll("#post-list .card"));
+
+  function apply() {
+    const t = typeSel.value.trim();
+    const y = yearSel.value.trim();
+
+    cards.forEach((c) => {
+      const okT = !t || c.dataset.type === t;
+      const okY = !y || c.dataset.year === y;
+      c.style.display = (okT && okY) ? "" : "none";
+    });
+  }
+
+  [typeSel, yearSel].forEach((el) => el.addEventListener("change", apply));
+</script>
