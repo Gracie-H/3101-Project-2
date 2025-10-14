@@ -3,15 +3,88 @@ layout: base.html
 ---
 <article class="post">
   <h1>{{ title }}</h1>
-  <p>
+
+  <div class="meta">
     {{ date | date("yyyy-MM-dd") }}
-    {% if layer %} · {{ layer }}{% endif %}
-    {% if scale %} · {{ scale }}{% endif %}
-  </p>
+  </div>
+
   {% if cover %}
-    <img src="{{ cover }}" alt="{{ title }}" style="width:100%;border-radius:12px;margin:12px 0;">
+    <img
+      class="post-cover"
+      src="{{ cover }}"
+      alt="{{ title }}"
+    >
   {% endif %}
-  <div>
+
+  <!-- 信息徽标区（自动按字段显示） -->
+  <div class="info">
+    {% if category %}
+      <span class="chip">category · {{ category }}</span>
+    {% endif %}
+
+    {% if brand %}
+      <span class="chip">brand · {{ brand }}</span>
+    {% endif %}
+
+    {% if style %}
+      <span class="chip">style · {{ style }}</span>
+    {% endif %}
+
+    {% if price_tier %}
+      <span class="chip">price · {{ price_tier }}</span>
+    {% endif %}
+
+    {% if material %}
+      {% for m in material %}
+        <span class="chip">material · {{ m }}</span>
+      {% endfor %}
+    {% endif %}
+
+    {% if color %}
+      {% for c in color %}
+        <span class="chip">color · {{ c }}</span>
+      {% endfor %}
+    {% endif %}
+
+    {% if origin %}
+      <span class="chip">origin · {{ origin }}</span>
+    {% endif %}
+
+    {# ——— 各类别的专属字段（有就显示） ——— #}
+    {% if scent_family %}
+      <span class="chip">scent · {{ scent_family }}</span>
+    {% endif %}
+    {% if concentration %}
+      <span class="chip">conc. · {{ concentration }}</span>
+    {% endif %}
+    {% if volume_ml %}
+      <span class="chip">volume · {{ volume_ml }}ml</span>
+    {% endif %}
+
+    {% if metal %}
+      <span class="chip">metal · {{ metal }}</span>
+    {% endif %}
+
+    {% if size %}
+      <span class="chip">size · {{ size }}</span>
+    {% endif %}
+
+    {% if capacity_ml %}
+      <span class="chip">capacity · {{ capacity_ml }}ml</span>
+    {% endif %}
+    {% if height_cm %}
+      <span class="chip">height · {{ height_cm }}cm</span>
+    {% endif %}
+
+    {% if piece_type %}
+      <span class="chip">type · {{ piece_type }}</span>
+    {% endif %}
+    {% if diameter_cm %}
+      <span class="chip">diameter · {{ diameter_cm }}cm</span>
+    {% endif %}
+  </div>
+
+  <div class="post-body">
     {{ content | safe }}
   </div>
 </article>
