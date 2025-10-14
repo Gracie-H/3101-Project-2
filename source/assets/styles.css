@@ -222,13 +222,13 @@ input[type="search"]:focus {
   height: clamp(120px, 16vw, 160px);
   object-fit: cover;
   border-radius: var(--radius-lg);
-  background: #fff;
   border: var(--hairline) solid var(--line);
   box-shadow: 0 14px 30px var(--elev);
   position: relative;
   overflow: hidden;
+  animation: float 5s ease-in-out infinite alternate;
 }
-/* 高光掠过 */
+
 .item img::after {
   content: "";
   position: absolute;
@@ -236,12 +236,19 @@ input[type="search"]:focus {
   pointer-events: none;
   background: linear-gradient(120deg, rgba(255,255,255,.0) 40%, rgba(255,255,255,.18) 55%, rgba(255,255,255,.0) 70%);
   transform: translateX(-120%);
-  transition: transform .6s var(--ease);
+  transition: transform 0.9s var(--ease);
   border-radius: inherit;
 }
+
 .item:hover img::after {
   transform: translateX(0%);
 }
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-6px); }
+}
+
 
 /* 标签胶囊 */
 .item .label {

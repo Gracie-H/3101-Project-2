@@ -2,7 +2,7 @@
 layout: post.html
 title: "Plain-Toe Derby EU41"
 date: 2025-10-14
-cover: "/assets/images/shoes-derby.jpg"
+cover: "/assets/images/shoes-dvn.png"
 summary: "牛皮素面德比，橡胶大底。"
 tags:
   - entry
