@@ -2,7 +2,7 @@
 layout: post.html
 title: "Ripple Glass Vase 900ml"
 date: 2025-10-14
-cover: "/assets/images/vase-ripple.jpg"
+cover: "/assets/images/vase1.png"
 summary: "波纹玻璃，单枝插花稳固。"
 tags:
   - entry

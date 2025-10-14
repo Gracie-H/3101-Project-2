@@ -2,12 +2,12 @@
 layout: post.html
 title: "Porcelain Dinner Plate 26cm"
 date: 2025-10-14
-cover: "/assets/images/tableware-plate.jpg"
+cover: "/assets/images/decoration-fork.png"
 summary: "简洁白瓷餐盘，边缘微上翘。"
 tags:
   - entry
 category: "tableware"
-brand: "Iittala"
+brand: "Iittala"xs
 material:
   - "porcelain"
 color:
