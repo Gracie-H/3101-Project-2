@@ -1,0 +1,17 @@
+---
+layout: base.html
+---
+<article class="post">
+  <h1>{{ title }}</h1>
+  <p>
+    {{ date | date("yyyy-MM-dd") }}
+    {% if layer %} · {{ layer }}{% endif %}
+    {% if scale %} · {{ scale }}{% endif %}
+  </p>
+  {% if cover %}
+    <img src="{{ cover }}" alt="{{ title }}" style="width:100%;border-radius:12px;margin:12px 0;">
+  {% endif %}
+  <div>
+    {{ content | safe }}
+  </div>
+</article>

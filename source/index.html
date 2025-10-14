@@ -2,67 +2,263 @@
 layout: base.html
 title: Home
 ---
-<h1>Collection</h1>
+
+<h1>Objects as System — Collections</h1>
 
 <div class="filters">
-  <select id="filter-type">
-    <option value="">All types</option>
-    <option>diary</option>
-    <option>film</option>
-    <option>album</option>
-    <option>project</option>
+  <select id="filter-category">
+    <option value="">All categories</option>
+    <option value="perfume">perfume</option>
+    <option value="jewelry">jewelry</option>
+    <option value="shoes">shoes</option>
+    <option value="vase">vase</option>
+    <option value="tableware">tableware</option>
   </select>
 
-  <select id="filter-year">
-    <option value="">All years</option>
-    {% set years = [] %}
-    {% for p in collections.entry | reverse %}
-      {% set y = (p.date | date("yyyy")) %}
-      {% if years.indexOf(y) == -1 %}
-        {% set years = years.concat([y]) %}
+  <select id="filter-material">
+    <option value="">All materials</option>
+    <option value="gold">gold</option>
+    <option value="silver">silver</option>
+    <option value="steel">steel</option>
+    <option value="leather">leather</option>
+    <option value="ceramic">ceramic</option>
+    <option value="porcelain">porcelain</option>
+    <option value="glass">glass</option>
+    <option value="wood">wood</option>
+    <option value="fabric">fabric</option>
+  </select>
+
+  <select id="filter-color">
+    <option value="">All colors</option>
+    <option value="black">black</option>
+    <option value="white">white</option>
+    <option value="gray">gray</option>
+    <option value="silver">silver</option>
+    <option value="gold">gold</option>
+    <option value="blue">blue</option>
+    <option value="green">green</option>
+    <option value="red">red</option>
+  </select>
+
+  <select id="filter-style">
+    <option value="">All styles</option>
+    <option value="minimal">minimal</option>
+    <option value="classic">classic</option>
+    <option value="vintage">vintage</option>
+    <option value="street">street</option>
+    <option value="luxury">luxury</option>
+    <option value="craft">craft</option>
+  </select>
+
+  <select id="filter-brand">
+    <option value="">All brands</option>
+    {% set brands = [] %}
+    {% for p in collections.entry %}
+      {% if p.data.brand and brands.indexOf(p.data.brand) == -1 %}
+        {% set brands = brands.concat([p.data.brand]) %}
       {% endif %}
     {% endfor %}
-    {% for y in years | reverse %}
-      <option value="{{ y }}">{{ y }}</option>
+    {% for b in brands | sort %}
+      <option value="{{ b }}">{{ b }}</option>
     {% endfor %}
+  </select>
+
+  <select id="filter-price">
+    <option value="">All prices</option>
+    <option value="budget">budget</option>
+    <option value="mid">mid</option>
+    <option value="premium">premium</option>
+    <option value="luxury">luxury</option>
   </select>
 </div>
 
-<ul id="post-list" class="grid">
-  {% for post in collections.entry | reverse %}
-    <li
-      class="card"
-      data-type="{{ post.data.type or '' }}"
-      data-year="{{ post.date | date('yyyy') }}"
-      data-tags="{{ (post.data.tags or []) | join(' ') }}"
-    >
-      <a href="{{ post.url }}">
+<div id="scene">
+  <div id="space">
+    {% for post in collections.entry | reverse %}
+      <a
+        class="item"
+        href="{{ post.url }}"
+        title="{{ post.data.title }}"
+        data-category="{{ post.data.category or '' }}"
+        data-brand="{{ post.data.brand or '' }}"
+        data-material="{{ (post.data.material or []) | join(' ') }}"
+        data-color="{{ (post.data.color or []) | join(' ') }}"
+        data-style="{{ post.data.style or '' }}"
+        data-price="{{ post.data.price_tier or '' }}"
+      >
         {% if post.data.cover %}
-          <img src="{{ post.data.cover }}" alt="">
+          <img src="{{ post.data.cover }}" alt="{{ post.data.title }}">
         {% endif %}
-        <h3>{{ post.data.title }}</h3>
-        <p class="meta">{{ post.date | date("yyyy-MM-dd") }}</p>
-        <p class="summary">{{ post.data.summary or "" }}</p>
+        <span class="label">{{ post.data.title }}</span>
       </a>
-    </li>
-  {% endfor %}
-</ul>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+  .filters {
+    position: sticky;
+    top: 8px;
+    display: flex;
+    gap: 10px;
+    z-index: 2;
+    margin-bottom: 8px;
+  }
+  .filters select {
+    padding: 6px 10px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: #fff;
+  }
+
+  #scene {
+    position: relative;
+    height: 70vh;
+    margin: 12px 0 24px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(#eef2f7, #ffffff);
+    perspective: 1200px;
+    cursor: grab;
+  }
+  #scene:active { cursor: grabbing; }
+
+  #space {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+    transition: transform 0.06s linear;
+  }
+
+  .item {
+    position: absolute;
+    display: block;
+    width: 220px;
+    text-decoration: none;
+    transform-style: preserve-3d;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .item img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
+    background: #fff;
+  }
+  .item .label {
+    display: block;
+    margin-top: 6px;
+    color: #111827;
+    font-size: 13px;
+    line-height: 1.3;
+    opacity: 0.85;
+    background: rgba(255, 255, 255, 0.66);
+    padding: 4px 6px;
+    border-radius: 6px;
+    width: max-content;
+    max-width: 100%;
+    backdrop-filter: blur(4px);
+  }
+  .item.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+</style>
 
 <script>
-  const typeSel = document.getElementById("filter-type");
-  const yearSel = document.getElementById("filter-year");
-  const cards = Array.from(document.querySelectorAll("#post-list .card"));
+  // 随机 2.5D 布局
+  const space = document.getElementById("space");
+  const items = Array.from(document.querySelectorAll(".item"));
 
-  function apply() {
-    const t = typeSel.value.trim();
-    const y = yearSel.value.trim();
+  function layoutRandom() {
+    const w = space.clientWidth;
+    const h = space.clientHeight;
 
-    cards.forEach((c) => {
-      const okT = !t || c.dataset.type === t;
-      const okY = !y || c.dataset.year === y;
-      c.style.display = (okT && okY) ? "" : "none";
+    items.forEach((el) => {
+      const x = (Math.random() * 2 - 1) * w * 0.9;
+      const y = (Math.random() * 2 - 1) * h * 0.9;
+      const z = -1200 + Math.random() * 1600;
+
+      el.style.transform = `
+        translate3d(${x}px, ${y}px, ${z}px)
+        rotateY(${(Math.random() * 10 - 5).toFixed(2)}deg)
+        rotateX(${(Math.random() * 6 - 3).toFixed(2)}deg)
+      `;
     });
   }
 
-  [typeSel, yearSel].forEach((el) => el.addEventListener("change", apply));
+  // 拖拽/滚轮浏览
+  let sx = 0;
+  let sy = 0;
+  let tx = 0;
+  let ty = 0;
+  let isDown = false;
+
+  function applyTransform() {
+    space.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+  }
+
+  space.addEventListener("wheel", (e) => {
+    tx -= e.deltaX * 0.6;
+    ty -= e.deltaY * 0.6;
+    applyTransform();
+  });
+
+  space.addEventListener("mousedown", (e) => {
+    isDown = true;
+    sx = e.clientX - tx;
+    sy = e.clientY - ty;
+  });
+  window.addEventListener("mousemove", (e) => {
+    if (!isDown) return;
+    tx = e.clientX - sx;
+    ty = e.clientY - sy;
+    applyTransform();
+  });
+  window.addEventListener("mouseup", () => { isDown = false; });
+
+  // 过滤（AND）
+  const categorySel = document.getElementById("filter-category");
+  const materialSel = document.getElementById("filter-material");
+  const colorSel    = document.getElementById("filter-color");
+  const styleSel    = document.getElementById("filter-style");
+  const brandSel    = document.getElementById("filter-brand");
+  const priceSel    = document.getElementById("filter-price");
+
+  function includesToken(listStr, token) {
+    if (!token) return true;
+    const arr = (listStr || "").split(" ").filter(Boolean);
+    return arr.includes(token);
+  }
+
+  function applyFilter() {
+    const C = categorySel.value.trim();
+    const M = materialSel.value.trim();
+    const K = colorSel.value.trim();
+    const S = styleSel.value.trim();
+    const B = brandSel.value.trim();
+    const P = priceSel.value.trim();
+
+    items.forEach((el) => {
+      const okC = !C || el.dataset.category === C;
+      const okM = includesToken(el.dataset.material, M);
+      const okK = includesToken(el.dataset.color, K);
+      const okS = !S || el.dataset.style === S;
+      const okB = !B || el.dataset.brand === B;
+      const okP = !P || el.dataset.price === P;
+
+      el.classList.toggle("hidden", !(okC && okM && okK && okS && okB && okP));
+    });
+  }
+
+  [categorySel, materialSel, colorSel, styleSel, brandSel, priceSel].forEach((el) => {
+    el.addEventListener("change", applyFilter);
+  });
+
+  // 初始
+  layoutRandom();
+  applyTransform();
+  applyFilter();
+  window.addEventListener("resize", layoutRandom);
 </script>
