@@ -20,3 +20,5 @@ height_cm: 24
 permalink: "/items/vase-ripple/"
 ---
 透明度高，适配郁金香、玫瑰与枝干类花材。
+tags:
+  - entry

@@ -21,3 +21,5 @@ volume_ml: 100
 permalink: "/items/perfume-eden/"
 ---
 前调清新，4–5 小时留香，炎热天气也不会腻。
+tags:
+  - entry

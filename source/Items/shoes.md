@@ -22,3 +22,6 @@ sole: "rubber"
 permalink: "/items/shoes-derby/"
 ---
 日常与半正式都合适，尺码正常。
+tags:
+  - entry
+
