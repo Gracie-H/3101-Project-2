@@ -1,47 +1,48 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head><link
-    rel="preconnect"
-    href="https://fonts.googleapis.com"
-  />
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&display=swap"
-    rel="stylesheet"
-  />
-  <style>
-    h1,
-    h2 {
-      font-family: "Instrument Serif", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial;
-    }
-  </style>
-  
-
-    
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ title or "My Collection Garden" }}</title>
+
+    <title>{{ title or "Piece Collections" }}</title>
+
+    <!-- Serif 标题，买手店质感 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital,wght@0,400;1,400&display=swap"
+      rel="stylesheet"
+    >
+
     <link rel="stylesheet" href="/assets/styles.css">
 
+    <style>
+      h1, h2 {
+        font-family: "Instrument Serif", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial;
+        letter-spacing: .2px;
+      }
+    </style>
   </head>
   <body>
     <header class="site-header">
-      <a href="/">Sense collections</a>
-      <!-- <nav>
-        <a href="/">All</a>
-      </nav> -->
+      <div class="container" style="display:flex; align-items:center; justify-content:space-between;">
+        <a href="/" style="text-decoration:none; font-weight:600;">Piece Collections</a>
+        <nav style="display:flex; gap:16px;">
+          <a href="/" style="text-decoration:none;">All</a>
+        </nav>
+      </div>
     </header>
 
     <main class="container">
       {{ content | safe }}
     </main>
 
+    <!-- 想显示作者就解除注释
     <footer class="site-footer">
-      <small>© {{ (site and site.author) or "Gracie Hong" }}</small>
+      <div class="container">
+        <small>© {{ (site and site.author) or "Author" }}</small>
+      </div>
     </footer>
+    -->
   </body>
 </html>
