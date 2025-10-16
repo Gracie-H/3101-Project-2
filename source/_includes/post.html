@@ -4,10 +4,6 @@ layout: base.html
 <article class="post">
   <h1>{{ title }}</h1>
 
-  <div class="meta">
-    {{ date | date("yyyy-MM-dd") }}
-  </div>
-
   {% if cover %}
     <img
       class="post-cover"

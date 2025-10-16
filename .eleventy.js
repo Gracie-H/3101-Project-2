@@ -1,24 +1,36 @@
-// .eleventy.js  —— ES Module 写法
+// .eleventy.js  —— ES Module
 export default function (eleventyConfig) {
-	// 静态资源直拷：/source/assets -> /_site/assets
+	// 1) 静态资源直拷：/source/assets -> /_site/assets
 	eleventyConfig.addPassthroughCopy({
 	  "source/assets": "assets"
 	});
   
-	// 自定义 date 过滤器（支持 {{ date | date("yyyy-MM-dd") }})
-	eleventyConfig.addFilter("date", (value, format = "yyyy-MM-dd") => {
-	  const d = value instanceof Date ? value : new Date(value);
-	  const yyyy = String(d.getFullYear());
-	  const mm = String(d.getMonth() + 1).padStart(2, "0");
-	  const dd = String(d.getDate()).padStart(2, "0");
+	// 2) 自定义 money 过滤器（模板里可用：{{ price | money(currency) }})
+	eleventyConfig.addFilter(
+	  "money",
+	  (amount, currency = "USD", opts = {}) => {
+		const n = Number(String(amount ?? "").replace(/[^\d.\-]/g, ""));
+		if (isNaN(n)) return "";
   
-	  // 目前只需要 yyyy-MM-dd，如需更多格式再扩展
-	  if (format === "yyyy-MM-dd") return `${yyyy}-${mm}-${dd}`;
+		const cents = typeof opts.cents === "boolean" ? opts.cents : false;
+		try {
+		  return new Intl.NumberFormat(
+			"en-US",
+			{
+			  style: "currency",
+			  currency,
+			  minimumFractionDigits: cents ? 2 : 0,
+			  maximumFractionDigits: cents ? 2 : 0
+			}
+		  ).format(n);
+		} catch {
+		  const rounded = cents ? n.toFixed(2) : Math.round(n).toString();
+		  return `$${rounded} ${currency}`;
+		}
+	  }
+	);
   
-	  // 兜底：ISO 字符串
-	  return d.toISOString();
-	});
-  
+	// 3) 目录与模板引擎
 	return {
 	  dir: {
 		input: "source",
