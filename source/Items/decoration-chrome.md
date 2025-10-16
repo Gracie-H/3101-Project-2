@@ -7,6 +7,6 @@ brand: "Iittala"
 material:
   - "porcelain"
 price: 129
-image: "/images/decoration-chrome.png"
+image: "/assets/images/decoration-chrome.png"
 ---
 正文内容……

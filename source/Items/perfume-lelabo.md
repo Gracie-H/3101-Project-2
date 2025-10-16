@@ -7,6 +7,6 @@ brand: "Iittala"
 material:
   - "porcelain"
 price: 129
-image: "/images/perfume-lelabo.png"
+image: "/assets/images/perfume-lelabo.png"
 ---
 正文内容……

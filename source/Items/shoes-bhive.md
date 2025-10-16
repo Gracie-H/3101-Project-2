@@ -7,6 +7,6 @@ brand: "Iittala"
 material:
   - "porcelain"
 price: 129
-image: "/images/shoes-bhive.png"
+image: "/assets/images/shoes-bhive.png"
 ---
 正文内容……

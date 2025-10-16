@@ -7,6 +7,6 @@ brand: "Iittala"
 material:
   - "porcelain"
 price: 129
-image: "/images/vase3.png"
+image: "/assets/images/vase3.png"
 ---
 正文内容……

@@ -7,7 +7,7 @@ brand: "Iittala"
 material:
   - "porcelain"
 price: 129
-image: "/images/decoration-cup.png"
+image: "/assets/images/decoration-cup.png"
 ---
 正文内容……
 

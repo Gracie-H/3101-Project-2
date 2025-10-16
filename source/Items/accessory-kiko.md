@@ -7,6 +7,6 @@ brand: "Iittala"
 material:
   - "porcelain"
 price: 129
-image: "/images/accessory-kiko.png"
+image: "/assets/images/accessory-kiko.png"
 ---
 正文内容……

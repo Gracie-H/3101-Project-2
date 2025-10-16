@@ -7,7 +7,7 @@ brand: "Iittala"
 material:
   - "porcelain"
 price: 129
-image: "/images/decoration-fork.png"
+image: "/assets/images/decoration-fork.png"
 ---
 正文内容……
 

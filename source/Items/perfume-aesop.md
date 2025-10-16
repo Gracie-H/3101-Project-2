@@ -7,6 +7,6 @@ brand: "Iittala"
 material:
   - "porcelain"
 price: 129
-image: "/images/perfume-aesop.png"
+image: "/assets/images/perfume-aesop.png"
 ---
 正文内容……

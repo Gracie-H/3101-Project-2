@@ -7,6 +7,6 @@ brand: "Iittala"
 material:
   - "porcelain"
 price: 129
-image: "/images/accessory-simone rocha.png"
+image: "/assets/images/accessory-simone rocha.png"
 ---
 正文内容……

@@ -7,6 +7,6 @@ brand: "Iittala"
 material:
   - "porcelain"
 price: 129
-image: "/images/perfume-perfume H.png"
+image: "/assets/images/perfume-perfume H.png"
 ---
 正文内容……
