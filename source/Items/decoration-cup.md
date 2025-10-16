@@ -9,5 +9,5 @@ material:
 price: 129
 image: "/assets/images/decoration-cup.png"
 ---
-正文内容……
+正文内容 cup ……
 
