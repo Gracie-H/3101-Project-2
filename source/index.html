@@ -3,7 +3,7 @@ layout: base.html
 title: Home
 ---
 
-<!-- 过滤条：Category + Price Range -->
+<!-- 过滤条（买手店药丸） -->
 <div class="filters">
   <select id="filter-category" aria-label="Category">
     <option value="">All categories</option>
@@ -14,12 +14,62 @@ title: Home
     <option value="tableware">tableware</option>
   </select>
 
-  <select id="filter-price" aria-label="Price range">
+  <select id="filter-material" aria-label="Material">
+    <option value="">All materials</option>
+    <option value="gold">gold</option>
+    <option value="silver">silver</option>
+    <option value="steel">steel</option>
+    <option value="leather">leather</option>
+    <option value="ceramic">ceramic</option>
+    <option value="porcelain">porcelain</option>
+    <option value="glass">glass</option>
+    <option value="wood">wood</option>
+    <option value="fabric">fabric</option>
+    <option value="rubber">rubber</option>
+  </select>
+
+  <select id="filter-color" aria-label="Color">
+    <option value="">All colors</option>
+    <option value="black">black</option>
+    <option value="white">white</option>
+    <option value="gray">gray</option>
+    <option value="silver">silver</option>
+    <option value="gold">gold</option>
+    <option value="blue">blue</option>
+    <option value="green">green</option>
+    <option value="red">red</option>
+    <option value="clear">clear</option>
+  </select>
+
+  <select id="filter-style" aria-label="Style">
+    <option value="">All styles</option>
+    <option value="minimal">minimal</option>
+    <option value="classic">classic</option>
+    <option value="vintage">vintage</option>
+    <option value="street">street</option>
+    <option value="luxury">luxury</option>
+    <option value="craft">craft</option>
+  </select>
+
+  <select id="filter-brand" aria-label="Brand">
+    <option value="">All brands</option>
+    {% set brands = [] %}
+    {% for p in collections.entry %}
+      {% if p.data.brand and brands.indexOf(p.data.brand) == -1 %}
+        {% set brands = brands.concat([p.data.brand]) %}
+      {% endif %}
+    {% endfor %}
+    {% for b in brands | sort %}
+      <option value="{{ b }}">{{ b }}</option>
+    {% endfor %}
+  </select>
+
+  <select id="filter-price" aria-label="Price tier">
     <option value="">All prices</option>
-    <option value="0-100">0–100 USD</option>
-    <option value="100-200">100–200 USD</option>
-    <option value="200-300">200–300 USD</option>
-    <option value="300+">300+ USD</option>
+    <option value="budget">budget</option>
+    <option value="mid">mid</option>
+    <option value="premium">premium</option>
+    <option value="luxury">luxury</option>
   </select>
 </div>
 
@@ -27,31 +77,28 @@ title: Home
 <div id="scene">
   <div id="space">
     {% for post in collections.entry | reverse %}
-      {% set price = post.data.price %}
-      {% set currency = post.data.currency or "USD" %}
       <a
         class="item"
         href="{{ post.url }}"
         title="{{ post.data.title }}"
         data-category="{{ post.data.category or '' }}"
-        data-price="{{ price or '' }}"
+        data-brand="{{ post.data.brand or '' }}"
+        data-material="{{ (post.data.material or []) | join(' ') }}"
+        data-color="{{ (post.data.color or []) | join(' ') }}"
+        data-style="{{ post.data.style or '' }}"
+        data-price="{{ post.data.price_tier or '' }}"
       >
         {% if post.data.cover %}
           <img src="{{ post.data.cover }}" alt="{{ post.data.title }}">
         {% endif %}
-        <span class="label">
-          <strong>{{ post.data.title }}</strong>
-          {% if price %}
-            <span class="price"> — ${{ price }} {{ currency }}</span>
-          {% endif %}
-        </span>
+        <span class="label">{{ post.data.title }}</span>
       </a>
     {% endfor %}
   </div>
 </div>
 
 <script>
-  // ========== 基础 ==========
+  // ========== 基础变量 ==========
   const space = document.getElementById("space");
   const items = Array.from(document.querySelectorAll(".item"));
 
@@ -73,8 +120,12 @@ title: Home
     });
   }
 
-  // ========== 拖拽 / 滚轮 ==========
-  let sx = 0, sy = 0, tx = 0, ty = 0, isDown = false;
+  // ========== 拖拽 / 滚轮 浏览 ==========
+  let sx = 0;
+  let sy = 0;
+  let tx = 0;
+  let ty = 0;
+  let isDown = false;
 
   function applyTransform() {
     space.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
@@ -101,46 +152,54 @@ title: Home
 
   window.addEventListener("mouseup", () => { isDown = false; });
 
-  // ========== 过滤（Category + 价格区间） ==========
+  // ========== 过滤（AND 关系） ==========
   const categorySel = document.getElementById("filter-category");
+  const materialSel = document.getElementById("filter-material");
+  const colorSel    = document.getElementById("filter-color");
+  const styleSel    = document.getElementById("filter-style");
+  const brandSel    = document.getElementById("filter-brand");
   const priceSel    = document.getElementById("filter-price");
 
-  // 将数值价格映射到区间 key
-  function bucketOf(priceNum) {
-    if (isNaN(priceNum)) return "";          // 没写价格：不过滤
-    if (priceNum < 100) return "0-100";
-    if (priceNum < 200) return "100-200";
-    if (priceNum < 300) return "200-300";
-    return "300+";
+  function includesToken(listStr, token) {
+    if (!token) return true;
+    const arr = (listStr || "").split(" ").filter(Boolean);
+    return arr.includes(token);
   }
 
   function applyFilter() {
     const C = categorySel.value.trim();
+    const M = materialSel.value.trim();
+    const K = colorSel.value.trim();
+    const S = styleSel.value.trim();
+    const B = brandSel.value.trim();
     const P = priceSel.value.trim();
 
     items.forEach((el) => {
       const okC = !C || el.dataset.category === C;
+      const okM = includesToken(el.dataset.material, M);
+      const okK = includesToken(el.dataset.color, K);
+      const okS = !S || el.dataset.style === S;
+      const okB = !B || el.dataset.brand === B;
+      const okP = !P || el.dataset.price === P;
 
-      const num = parseFloat((el.dataset.price || "").toString().replace(/[^\d.]/g, ""));
-      const bucket = bucketOf(num);
-      const okP = !P || bucket === P;
-
-      el.classList.toggle("hidden", !(okC && okP));
+      el.classList.toggle("hidden", !(okC && okM && okK && okS && okB && okP));
     });
   }
 
-  [categorySel, priceSel].forEach((el) => el.addEventListener("change", applyFilter));
+  [categorySel, materialSel, colorSel, styleSel, brandSel, priceSel].forEach((el) => {
+    el.addEventListener("change", applyFilter);
+  });
 
-  // ========== 夸张动画：随机参数 + 3D 倾斜 + 自动漂移 ==========
-  // 为每张图写入随机 CSS 变量（节奏/振幅/高光时长）
+  // ========== 夸张动画：节奏随机化 + 高光 + 3D 倾斜 + 自动漂移 ==========
+  // 为每张图写入随机的 CSS 变量（振幅/时长/相位）
   items.forEach((el) => {
     const img = el.querySelector("img");
     if (!img) return;
 
-    const bobD   = 4 + Math.random() * 4;     // 4–8s
-    const bobLag = -Math.random() * bobD;     // 负延迟错峰
-    const amp    = 10 + Math.random() * 20;   // 10–30px
-    const glareD = 3.2 + Math.random() * 2.2; // 3.2–5.4s
+    const bobD   = 4 + Math.random() * 4;     // 4-8s
+    const bobLag = -Math.random() * bobD;     // 负延迟制造错峰
+    const amp    = 10 + Math.random() * 20;   // 10-30px 振幅
+    const glareD = 3.2 + Math.random() * 2.2; // 3.2-5.4s
 
     img.style.setProperty("--bobD", `${bobD}s`);
     img.style.setProperty("--bobDelay", `${bobLag}s`);
@@ -149,27 +208,30 @@ title: Home
   });
 
   // 悬停 3D 倾斜
-  const MAX_TILT = 10;
+  const MAX_TILT = 10; // 最大倾角（度）
   items.forEach((el) => {
     const img = el.querySelector("img");
     if (!img) return;
 
     img.addEventListener("mousemove", (e) => {
       const r = img.getBoundingClientRect();
-      const rx = ((e.clientY - r.top) / r.height - 0.5) * -2;
-      const ry = ((e.clientX - r.left) / r.width  - 0.5) *  2;
+      const rx = ((e.clientY - r.top) / r.height - 0.5) * -2; // -1~1
+      const ry = ((e.clientX - r.left) / r.width  - 0.5) *  2; // -1~1
       img.style.transform =
         `rotateX(${rx * MAX_TILT}deg) rotateY(${ry * MAX_TILT}deg) translateZ(16px) scale(1.08)`;
     });
-    img.addEventListener("mouseleave", () => { img.style.transform = ""; });
+
+    img.addEventListener("mouseleave", () => {
+      img.style.transform = "";
+    });
   });
 
-  // 自动相机漂移
+  // 自动相机漂移（不操作时轻轻游动；手动拖拽仍优先）
   let ax = 0, ay = 0, t0 = performance.now();
   function autoDrift(now) {
     const dt = (now - t0) / 1000;
-    ax = Math.sin(dt * 0.35) * 24;
-    ay = Math.cos(dt * 0.25) * 16;
+    ax = Math.sin(dt * 0.35) * 24; // X 漂移幅度
+    ay = Math.cos(dt * 0.25) * 16; // Y 漂移幅度
     space.style.transform = `translate3d(${tx + ax}px, ${ty + ay}px, 0)`;
     requestAnimationFrame(autoDrift);
   }
