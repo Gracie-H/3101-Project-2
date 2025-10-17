@@ -7,7 +7,7 @@ summary: "简洁白瓷餐盘，边缘微上翘。"
 tags:
   - entry
 category: "tableware"
-brand: "Iittala"xs
+brand: "Iittala"
 material:
   - "porcelain"
 color:
