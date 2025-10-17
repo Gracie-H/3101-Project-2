@@ -1,30 +1,38 @@
-// .eleventy.js (ESM)
+// .eleventy.js (只展示新增/修改部分)
 export default function (eleventyConfig) {
-	// 复制静态资源：source/assets → _site/assets
-	eleventyConfig.addPassthroughCopy({ "source/assets": "assets" });
+	// ...你现有的配置保持不变
   
-	// date 过滤器
-	eleventyConfig.addFilter("date", (value, format = "yyyy-MM-dd") => {
-	  const d = value instanceof Date ? value : new Date(value);
-	  const yyyy = String(d.getFullYear());
-	  const mm = String(d.getMonth() + 1).padStart(2, "0");
-	  const dd = String(d.getDate()).padStart(2, "0");
-	  if (format === "yyyy-MM-dd") return `${yyyy}-${mm}-${dd}`;
-	  return d.toISOString();
+	// 价格格式化：{{ 80 | money }} -> $80
+	eleventyConfig.addFilter("money", (n, symbol = "$") => {
+	  const num = Number(n);
+	  if (Number.isNaN(num)) return n;
+	  return symbol + (num % 1 === 0 ? num.toFixed(0) : num.toFixed(2));
 	});
   
-	// 生产环境（GitHub Actions/Pages）才加子路径前缀
-	const isProd = process.env.NODE_ENV === "production" || process.env.GITHUB_ACTIONS;
+	// 按价格升序
+	eleventyConfig.addCollection("entryByPriceAsc", (api) => {
+	  return api.getFilteredByTag("entry").sort((a, b) => {
+		const pa = Number(a.data.price ?? Infinity);
+		const pb = Number(b.data.price ?? Infinity);
+		return pa - pb;
+	  });
+	});
+  
+	// 按价格降序（可选）
+	eleventyConfig.addCollection("entryByPriceDesc", (api) => {
+	  return api.getFilteredByTag("entry").sort((a, b) => {
+		const pa = Number(a.data.price ?? -Infinity);
+		const pb = Number(b.data.price ?? -Infinity);
+		return pb - pa;
+	  });
+	});
   
 	return {
-	  dir: {
-		input: "source",
-		includes: "_includes",
-		output: "_site",
-	  },
+	  // 你的返回对象保持不变
+	  dir: { input: "source", includes: "_includes", output: "_site" },
 	  htmlTemplateEngine: "njk",
 	  markdownTemplateEngine: "njk",
-	  pathPrefix: isProd ? "/3101-Project-2/" : "/", // 关键！
+	  pathPrefix: (process.env.NODE_ENV === "production" || process.env.GITHUB_ACTIONS) ? "/3101-Project-2/" : "/",
 	};
   }
   
