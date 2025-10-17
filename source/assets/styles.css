@@ -213,14 +213,15 @@ input[type="search"]:focus {
   will-change: transform, opacity, filter;
 }
 .item:hover {
-  transform: translateZ(10px) scale(1.02);
+  transform: translateZ(10px) ;
   filter: saturate(1.02);
 }
 
 .item img {
-  width: 100%;
-  height: clamp(120px, 16vw, 160px);
-  object-fit: cover;
+  width: 100% !important;
+  height: auto !important;        /* 按原比例伸缩 */
+  object-fit: contain;
+
   border-radius: var(--radius-lg);
   border: var(--hairline) solid var(--line);
   box-shadow: 0 14px 30px var(--elev);
