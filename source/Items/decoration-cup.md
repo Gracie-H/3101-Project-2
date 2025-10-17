@@ -6,13 +6,13 @@ cover: "/assets/images/decoration-cup.png"
 summary: "简洁白瓷餐盘，边缘微上翘。"
 tags:
   - entry
-category: "tableware"
+category: "decoration"
 brand: "Iittala"
 material:
   - "porcelain"
 color:
   - "white"
-style: "minimal"
+style: "120"
 price_tier: "mid"
 origin: "Finland"
 piece_type: "plate"

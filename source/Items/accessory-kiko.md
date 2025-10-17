@@ -6,9 +6,9 @@ cover: "/assets/images/accessory-kiko.png"
 summary: "简洁白瓷餐盘，边缘微上翘。"
 tags:
   - entry
-category: "tableware"
+category: "accessory"
 
-price_tier: "mid"
+price_tier: "230"
 origin: "Finland"
 
 diameter_cm: 26

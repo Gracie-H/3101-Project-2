@@ -6,13 +6,14 @@ cover: "/assets/images/accessory-chrome.png"
 summary: "简洁白瓷餐盘，边缘微上翘。"
 tags:
   - entry
-category: "tableware"
-brand: "Iittala"
+category: "decoration"
+
+
 material:
   - "porcelain"
 color:
   - "white"
-style: "minimal"
+style: "1000+"
 price_tier: "mid"
 origin: "Finland"
 piece_type: "plate"

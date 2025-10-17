@@ -6,14 +6,14 @@ cover: "/assets/images/decoration-fork.png"
 summary: "简洁白瓷餐盘，边缘微上翘。"
 tags:
   - entry
-category: "tableware"
+category: "decoration"
 brand: "Iittala"
 material:
   - "porcelain"
 color:
   - "white"
 style: "minimal"
-price_tier: "mid"
+price_tier: "80"
 origin: "Finland"
 piece_type: "plate"
 diameter_cm: 26
