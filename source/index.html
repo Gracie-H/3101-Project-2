@@ -8,10 +8,10 @@ title: Home
   <select id="filter-category" aria-label="Category">
     <option value="">All categories</option>
     <option value="perfume">perfume</option>
-    <option value="jewelry">jewelry</option>
+    <option value="accessory">accessory</option>
     <option value="shoes">shoes</option>
     <option value="vase">vase</option>
-    <option value="decoration">tableware</option>
+    <option value="decoration">decoration</option>
   </select>
 
   <select id="filter-price" aria-label="Price range">
@@ -51,133 +51,110 @@ title: Home
 </div>
 
 <script>
-  // ========== 基础 ==========
-  const space = document.getElementById("space");
-  const items = Array.from(document.querySelectorAll(".item"));
+  // ====== 选择器 ======
+  const scene  = document.getElementById("scene");
+  const space  = document.getElementById("space");
+  const items  = Array.from(document.querySelectorAll(".item"));
 
-  // ========== 随机 2.5D 布局 ==========
-  function layoutRandom() {
-    const w = space.clientWidth;
-    const h = space.clientHeight;
-
-    items.forEach((el) => {
-      const x = (Math.random() * 2 - 1) * w * 0.9;
-      const y = (Math.random() * 2 - 1) * h * 0.9;
-      const z = -1200 + Math.random() * 1600;
-
-      el.style.transform = `
-        translate3d(${x}px, ${y}px, ${z}px)
-        rotateY(${(Math.random() * 10 - 5).toFixed(2)}deg)
-        rotateX(${(Math.random() * 6 - 3).toFixed(2)}deg)
-      `;
-    });
-  }
-
-  // ========== 拖拽 / 滚轮 ==========
-  let sx = 0, sy = 0, tx = 0, ty = 0, isDown = false;
-
-  function applyTransform() {
-    space.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
-  }
-
-  space.addEventListener("wheel", (e) => {
-    tx -= e.deltaX * 0.6;
-    ty -= e.deltaY * 0.6;
-    applyTransform();
-  });
-
-  space.addEventListener("mousedown", (e) => {
-    isDown = true;
-    sx = e.clientX - tx;
-    sy = e.clientY - ty;
-  });
-
-  window.addEventListener("mousemove", (e) => {
-    if (!isDown) return;
-    tx = e.clientX - sx;
-    ty = e.clientY - sy;
-    applyTransform();
-  });
-
-  window.addEventListener("mouseup", () => { isDown = false; });
-
-  // ========== 过滤（Category + 价格区间） ==========
   const categorySel = document.getElementById("filter-category");
   const priceSel    = document.getElementById("filter-price");
 
-  // 将数值价格映射到区间 key
-  function bucketOf(priceNum) {
-    if (isNaN(priceNum)) return "";          // 没写价格：不过滤
-    if (priceNum < 100) return "0-100";
-    if (priceNum < 200) return "100-200";
-    if (priceNum < 300) return "200-300";
+  // ====== “都能看到”的网格+抖动布局 ======
+  const PADDING = 24;     // 画面内边距
+  const GAP     = 24;     // 卡片间距
+  const JITTER  = 10;     // 微抖动范围（像素）
+
+  // 基准卡片宽度（会按屏幕自动调小/调大）
+  function cardWidthFor(w){
+    if (w >= 1400) return 260;
+    if (w >= 1100) return 240;
+    if (w >= 900)  return 220;
+    if (w >= 700)  return 200;
+    return 180;
+  }
+
+  async function waitImages(){
+    // 等图片解码后拿到正确尺寸
+    await Promise.all(items.map(el=>{
+      const img = el.querySelector("img");
+      return img && img.decode ? img.decode().catch(()=>{}) : Promise.resolve();
+    }));
+  }
+
+  function layoutGrid(){
+    const W = scene.clientWidth;
+    const baseW = cardWidthFor(W);
+
+    // 以图片原比例为主，给个估算高度，避免闪动
+    const estH = Math.round(baseW * 0.66);
+
+    // 计算列数（至少 1 列）
+    const cols = Math.max(1, Math.floor((W - PADDING*2 + GAP) / (baseW + GAP)));
+
+    // 逐个定位：按网格排，叠加微抖动
+    let x = 0, y = 0, rowHeights = Array(cols).fill(0);
+    items.forEach((el, i) => {
+      const col = i % cols;
+      const row = Math.floor(i / cols);
+
+      // 真实尺寸（若已解码），否则用估算
+      const img = el.querySelector("img");
+      const w   = baseW;
+      const h   = img && img.naturalWidth ? Math.round(w * (img.naturalHeight / img.naturalWidth)) : estH;
+
+      const left = PADDING + col * (baseW + GAP) + (Math.random()*2-1)*JITTER;
+      const top  = PADDING + rowHeights[col] + (Math.random()*2-1)*JITTER;
+
+      el.style.width = w + "px";
+      // 用 translate3d 方便保留一点 3D 效果
+      el.style.transform = `translate3d(${left}px, ${top}px, 0)`;
+
+      // 累积该列高度
+      rowHeights[col] += h + 32 /*label + 内边距估算*/ + GAP;
+    });
+
+    // 设定容器高度（取各列最大）
+    const maxH = Math.max(...rowHeights);
+    space.style.height = (maxH + PADDING) + "px";
+  }
+
+  // ====== 过滤（Category + 价格区间），与布局相互独立 ======
+  function bucketOf(n){
+    const p = parseFloat((n ?? "").toString().replace(/[^\d.]/g,""));
+    if (isNaN(p)) return "";
+    if (p < 100) return "0-100";
+    if (p < 200) return "100-200";
+    if (p < 300) return "200-300";
     return "300+";
   }
 
-  function applyFilter() {
+  function applyFilter(){
     const C = categorySel.value.trim();
     const P = priceSel.value.trim();
-
-    items.forEach((el) => {
+    items.forEach(el => {
       const okC = !C || el.dataset.category === C;
-
-      const num = parseFloat((el.dataset.price || "").toString().replace(/[^\d.]/g, ""));
-      const bucket = bucketOf(num);
-      const okP = !P || bucket === P;
-
+      const okP = !P || bucketOf(el.dataset.price) === P;
       el.classList.toggle("hidden", !(okC && okP));
     });
+    // 过滤后重新布局（高度变化）
+    requestAnimationFrame(layoutGrid);
   }
 
-  [categorySel, priceSel].forEach((el) => el.addEventListener("change", applyFilter));
+  categorySel.addEventListener("change", applyFilter);
+  priceSel.addEventListener("change", applyFilter);
 
-  // ========== 夸张动画：随机参数 + 3D 倾斜 + 自动漂移 ==========
-  // 为每张图写入随机 CSS 变量（节奏/振幅/高光时长）
-  items.forEach((el) => {
-    const img = el.querySelector("img");
-    if (!img) return;
+  // ====== 初始化：图片解码 → 布局 ======
+  (async function init(){
+    // 取消之前的 2.5D 拖拽/漂移（如果 CSS/JS 里还有，可忽略）
+    space.style.transform = "none";
 
-    const bobD   = 4 + Math.random() * 4;     // 4–8s
-    const bobLag = -Math.random() * bobD;     // 负延迟错峰
-    const amp    = 10 + Math.random() * 20;   // 10–30px
-    const glareD = 3.2 + Math.random() * 2.2; // 3.2–5.4s
+    await waitImages();
+    layoutGrid();
+    applyFilter();
 
-    img.style.setProperty("--bobD", `${bobD}s`);
-    img.style.setProperty("--bobDelay", `${bobLag}s`);
-    img.style.setProperty("--glareD", `${glareD}s`);
-    img.style.setProperty("--amp", `${amp}px`);
-  });
-
-  // 悬停 3D 倾斜
-  const MAX_TILT = 10;
-  items.forEach((el) => {
-    const img = el.querySelector("img");
-    if (!img) return;
-
-    img.addEventListener("mousemove", (e) => {
-      const r = img.getBoundingClientRect();
-      const rx = ((e.clientY - r.top) / r.height - 0.5) * -2;
-      const ry = ((e.clientX - r.left) / r.width  - 0.5) *  2;
-      img.style.transform =
-        `rotateX(${rx * MAX_TILT}deg) rotateY(${ry * MAX_TILT}deg) translateZ(16px) scale(1.08)`;
+    // 自适应：窗口变化时重排
+    window.addEventListener("resize", () => {
+      layoutGrid();
     });
-    img.addEventListener("mouseleave", () => { img.style.transform = ""; });
-  });
-
-  // 自动相机漂移
-  let ax = 0, ay = 0, t0 = performance.now();
-  function autoDrift(now) {
-    const dt = (now - t0) / 1000;
-    ax = Math.sin(dt * 0.35) * 24;
-    ay = Math.cos(dt * 0.25) * 16;
-    space.style.transform = `translate3d(${tx + ax}px, ${ty + ay}px, 0)`;
-    requestAnimationFrame(autoDrift);
-  }
-  requestAnimationFrame(autoDrift);
-
-  // ========== 初始 ==========
-  layoutRandom();
-  applyTransform();
-  applyFilter();
-  window.addEventListener("resize", layoutRandom);
+  })();
 </script>
