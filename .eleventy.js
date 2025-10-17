@@ -8,7 +8,9 @@ export default function (eleventyConfig) {
 	  if (Number.isNaN(num)) return n;
 	  return symbol + (num % 1 === 0 ? num.toFixed(0) : num.toFixed(2));
 	});
-  
+	
+	eleventyConfig.addPassthroughCopy({ "source/assets": "assets" });
+
 	// 按价格升序
 	eleventyConfig.addCollection("entryByPriceAsc", (api) => {
 	  return api.getFilteredByTag("entry").sort((a, b) => {
