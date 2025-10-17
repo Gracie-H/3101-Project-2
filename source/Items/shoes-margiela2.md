@@ -17,7 +17,7 @@ price_tier: "mid"
 origin: "Finland"
 piece_type: "plate"
 diameter_cm: 26
-permalink: "/items/tableware-plate-26/"
+permalink: "/items/shoes-margiela2/"
 ---
 摆盘友好，洗碗机与微波炉可用。
 tags:
