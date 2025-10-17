@@ -1,6 +1,7 @@
 ---
 layout: base.html
 title: Home
+templateEngineOverride: njk 
 ---
 
 <!-- 过滤条：Category + Price Range -->
@@ -14,13 +15,14 @@ title: Home
     <option value="decoration">decoration</option>
   </select>
 
-  <select id="filter-price" aria-label="Price range">
+  <select id="filter-price">
     <option value="">All prices</option>
     <option value="0-100">0–100 USD</option>
     <option value="100-200">100–200 USD</option>
     <option value="200-300">200–300 USD</option>
     <option value="300+">300+ USD</option>
   </select>
+  
 </div>
 
 <!-- 2.5D 漂浮场景 -->
@@ -37,8 +39,10 @@ title: Home
         data-price="{{ price or '' }}"
       >
         {% if post.data.cover %}
-          <img src="{{ post.data.cover }}" alt="{{ post.data.title }}">
-        {% endif %}
+
+        <img src="{{ post.data.cover | url }}" alt="{{ post.data.title }}">
+      {% endif %}
+      
         <span class="label">
           <strong>{{ post.data.title }}</strong>
           {% if price %}
@@ -59,10 +63,24 @@ title: Home
   const categorySel = document.getElementById("filter-category");
   const priceSel    = document.getElementById("filter-price");
 
-  // ====== “都能看到”的网格+抖动布局 ======
+  // ====== 布局参数 ======
   const PADDING = 24;     // 画面内边距
   const GAP     = 24;     // 卡片间距
   const JITTER  = 10;     // 微抖动范围（像素）
+
+  // 价格区间判断
+  function inPriceRange(price, token) {
+    if (!token) return true;                 // All
+    if (Number.isNaN(price)) return !token;  // 无价格仅在“All”中显示
+
+    if (token.endsWith("+")) {
+      const min = Number(token.slice(0, -1));
+      return price >= min;                  // 300+ ：>= 300
+    }
+    const [min, max] = token.split("-").map(Number);
+    // 采用左闭右开 [min, max)
+    return price >= min && price < max;
+  }
 
   // 基准卡片宽度（会按屏幕自动调小/调大）
   function cardWidthFor(w){
@@ -74,7 +92,6 @@ title: Home
   }
 
   async function waitImages(){
-    // 等图片解码后拿到正确尺寸
     await Promise.all(items.map(el=>{
       const img = el.querySelector("img");
       return img && img.decode ? img.decode().catch(()=>{}) : Promise.resolve();
@@ -84,20 +101,14 @@ title: Home
   function layoutGrid(){
     const W = scene.clientWidth;
     const baseW = cardWidthFor(W);
-
-    // 以图片原比例为主，给个估算高度，避免闪动
     const estH = Math.round(baseW * 0.66);
-
-    // 计算列数（至少 1 列）
     const cols = Math.max(1, Math.floor((W - PADDING*2 + GAP) / (baseW + GAP)));
 
-    // 逐个定位：按网格排，叠加微抖动
-    let x = 0, y = 0, rowHeights = Array(cols).fill(0);
+    let rowHeights = Array(cols).fill(0);
     items.forEach((el, i) => {
-      const col = i % cols;
-      const row = Math.floor(i / cols);
+      if (el.style.display === "none") return; // 隐藏项不参与排布
 
-      // 真实尺寸（若已解码），否则用估算
+      const col = i % cols;
       const img = el.querySelector("img");
       const w   = baseW;
       const h   = img && img.naturalWidth ? Math.round(w * (img.naturalHeight / img.naturalWidth)) : estH;
@@ -106,55 +117,44 @@ title: Home
       const top  = PADDING + rowHeights[col] + (Math.random()*2-1)*JITTER;
 
       el.style.width = w + "px";
-      // 用 translate3d 方便保留一点 3D 效果
       el.style.transform = `translate3d(${left}px, ${top}px, 0)`;
 
-      // 累积该列高度
-      rowHeights[col] += h + 32 /*label + 内边距估算*/ + GAP;
+      rowHeights[col] += h + 32 + GAP; // 32 估算标签/内边距
     });
 
-    // 设定容器高度（取各列最大）
-    const maxH = Math.max(...rowHeights);
+    const maxH = Math.max(0, ...rowHeights);
     space.style.height = (maxH + PADDING) + "px";
   }
 
-  // ====== 过滤（Category + 价格区间），与布局相互独立 ======
-  function bucketOf(n){
-    const p = parseFloat((n ?? "").toString().replace(/[^\d.]/g,""));
-    if (isNaN(p)) return "";
-    if (p < 100) return "0-100";
-    if (p < 200) return "100-200";
-    if (p < 300) return "200-300";
-    return "300+";
-  }
-
+  // ====== 过滤（Category + 价格区间） ======
   function applyFilter(){
-    const C = categorySel.value.trim();
-    const P = priceSel.value.trim();
+    const C = (categorySel?.value || "").trim().toLowerCase();
+    const priceToken = priceSel?.value || "";
+
     items.forEach(el => {
-      const okC = !C || el.dataset.category === C;
-      const okP = !P || bucketOf(el.dataset.price) === P;
-      el.classList.toggle("hidden", !(okC && okP));
+      const cat   = (el.dataset.category || "").toLowerCase();
+      const price = parseFloat(el.dataset.price); // 一定是纯数字
+
+      const okC     = !C || cat === C;
+      const okPrice = inPriceRange(price, priceToken);
+
+      el.style.display = (okC && okPrice) ? "" : "none";
     });
-    // 过滤后重新布局（高度变化）
+
+    // 过滤后重新布局
     requestAnimationFrame(layoutGrid);
   }
 
-  categorySel.addEventListener("change", applyFilter);
-  priceSel.addEventListener("change", applyFilter);
+  // 事件绑定（注意：只绑定 applyFilter 这个函数）
+  categorySel?.addEventListener("change", applyFilter);
+  priceSel?.addEventListener("change", applyFilter);
 
-  // ====== 初始化：图片解码 → 布局 ======
+  // ====== 初始化：图片解码 → 布局 → 初次过滤 ======
   (async function init(){
-    // 取消之前的 2.5D 拖拽/漂移（如果 CSS/JS 里还有，可忽略）
     space.style.transform = "none";
-
     await waitImages();
     layoutGrid();
     applyFilter();
-
-    // 自适应：窗口变化时重排
-    window.addEventListener("resize", () => {
-      layoutGrid();
-    });
+    window.addEventListener("resize", layoutGrid);
   })();
 </script>

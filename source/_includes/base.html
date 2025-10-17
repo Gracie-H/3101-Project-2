@@ -1,3 +1,7 @@
+---
+templateEngineOverride: njk
+---
+
 <!doctype html>
 <html lang="zh-CN">
   <head>
@@ -37,12 +41,6 @@
       {{ content | safe }}
     </main>
 
-    <!-- 想显示作者就解除注释
-    <footer class="site-footer">
-      <div class="container">
-        <small>© {{ (site and site.author) or "Author" }}</small>
-      </div>
-    </footer>
-    -->
+
   </body>
 </html>

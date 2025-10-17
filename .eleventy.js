@@ -33,11 +33,17 @@ export default function (eleventyConfig) {
 	});
   
 	return {
-	  // 你的返回对象保持不变
-	  dir: { input: "source", includes: "_includes", output: "_site" },
-	  htmlTemplateEngine: "njk",
-	  markdownTemplateEngine: "njk",
-	  pathPrefix: (process.env.NODE_ENV === "production" || process.env.GITHUB_ACTIONS) ? "/3101-Project-2/" : "/",
-	};
+		dir: { input: "source", includes: "_includes", output: "_site" },
+		// 让 .html / .md 里的模板语法用 Nunjucks 解析
+		htmlTemplateEngine: "njk",
+		markdownTemplateEngine: "njk",
+		// （可选）声明可用格式
+		templateFormats: ["html", "njk", "md"],
+		// 你的其他设置，比如：
+		pathPrefix: (process.env.NODE_ENV === "production" || process.env.GITHUB_ACTIONS)
+		  ? "/3101-Project-2/"
+		  : "/",
+	  };
+	  
   }
   
