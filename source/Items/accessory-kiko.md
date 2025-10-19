@@ -8,7 +8,8 @@ tags:
   - entry
 category: "accessory"
 
-price_tier: "230"
+price: 325           
+currency: USD  
 origin: "Finland"
 
 diameter_cm: 26

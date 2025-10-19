@@ -13,7 +13,8 @@ material:
 color:
   - "white"
 style: "minimal"
-price_tier: "80"
+price: 170           
+currency: USD  
 origin: "Finland"
 piece_type: "plate"
 diameter_cm: 26

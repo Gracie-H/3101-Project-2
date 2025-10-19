@@ -13,7 +13,8 @@ material:
 color:
   - "white"
 style: "minimal"
-price_tier: "780"
+price: 780           
+currency: USD  
 origin: "Poland"
 piece_type: "Glass Medium Vase"
 diameter_cm: H14" x W6.5"
