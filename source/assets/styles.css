@@ -389,34 +389,42 @@ a:hover {
 /* 1) 新容器：多列瀑布流 */
 .masonry{
   columns: 4 280px;    /* 自动3~4列；最小列宽 280px */
-  column-gap: 24px;
+  column-gap: 40px;
   padding: 24px;
 }
 
 /* 2) 复用你现有的 .item，但改为“普通块级卡片”，禁止绝对定位与放大 */
 .masonry .item{
-  position: static !important;   /* 覆盖之前的 absolute */
+  position: static !important;
   display: block;
-  width: auto;                   /* 交给列宽控制 */
-  margin: 0 0 24px;              /* 卡片竖向间距 */
-  transform: none !important;    /* 取消 hover 放大，避免遮挡 */
-  break-inside: avoid;           /* 关键：避免被拆到两列 */
-  will-change: auto;
+  width: auto;
+  margin: 0 0 28px;              /* 卡片之间竖向间距 */
+  padding: 10px;                 /* 给图片和标题留出呼吸空间 */
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  border: var(--hairline) solid var(--line);
+  border-radius: 16px;
+  transform: none !important;
+  break-inside: avoid;           /* 关键：避免卡片在两列间被拆开 */
+  box-shadow: 0 14px 30px var(--elev);
 }
 
-/* 3) 图片按原比例：不裁切、不固定高度 */
+
 .masonry .item img{
   width: 100% !important;
-  height: auto !important;       /* 保持比例 */
-  object-fit: contain !important;/* 就算以后你加了高度也不裁图 */
+  height: auto !important;      
+  object-fit: contain !important;
   border-radius: var(--radius-lg);
   box-shadow: 0 14px 30px var(--elev);
-  animation: none !important;    /* 取消浮动动效，防跨列影响布局 */
+  
 }
 
 /* 4) 卡片标签等保持即可 */
 .masonry .item .label{
-  margin-top: 8px;
+
+  display: block;
+  margin-top: 130px;
+  position: relative;
+  z-index: 0;     
 }
 
 /* 5) 响应式列数 */
