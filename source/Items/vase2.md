@@ -1,18 +1,18 @@
 ---
 layout: post.html
-title: "Szkło"
+title: "White Opal Small Vase"
 date: 2025-10-14
 cover: "/assets/images/vase2.png"
 summary: "Textured hand-blown glass vase."
 tags:
   - entry
-category: "tableware"
-brand: "Iittala"
+category: "vase"
+brand: "Szkło"
 material:
   - "Glass"
 color:
   - "white"
-style: "minimal"
+
 price: 780           
 currency: USD  
 origin: "Poland"

@@ -1,23 +1,24 @@
 ---
 layout: post.html
-title: "Porcelain Dinner Plate 26cm"
-date: 2025-10-14
+title: "Black Pearly Pearl Small Vase"
+
 cover: "/assets/images/vase3.png"
-summary: "简洁白瓷餐盘，边缘微上翘。"
+summary: "Handcrafted glazed ceramic vase in black."
+
 tags:
   - entry
-category: "tableware"
-brand: "Iittala"
+category: "vase"
+brand: "PCompletedworks"
 material:
-  - "porcelain"
+  - "Ceramic, resin."
 color:
-  - "white"
-style: "minimal"
-price: 125           
+  - "black"
+
+price: 670        
 currency: USD  
-origin: "Finland"
+origin: "Made in Portugal."
 piece_type: "plate"
-diameter_cm: 26
+diameter_cm:  H6.3" x D3.74"
 permalink: "/items/vase3/"
 ---
 

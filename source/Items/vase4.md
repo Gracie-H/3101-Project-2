@@ -1,21 +1,20 @@
 ---
 layout: post.html
-title: "Porcelain Dinner Plate 26cm"
-date: 2025-10-14
+title: "Orange & Blue Medium Fioca Extra Colour Vase"
+
 cover: "/assets/images/vase1.png"
-summary: "简洁白瓷餐盘，边缘微上翘。"
+summary: "Designed by Gaetano Pesce, 1995"
 tags:
   - entry
 category: "tableware"
-brand: "Iittala"
+brand: "CORSI DESIGN"
 material:
-  - "porcelain"
-color:
-  - "white"
-style: "minimal"
-price: 278           
+  - "resin"
+
+
+price: 520           
 currency: USD  
-origin: "Finland"
+origin: "Made in Italy."
 piece_type: "plate"
 diameter_cm: 26
 permalink: "/items/vase4/"
