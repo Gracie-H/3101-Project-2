@@ -1,6 +1,6 @@
 ---
 layout: post.html
-title: "Porcelain Dinner Plate 26cm"
+title: "kiko kast"
 
 cover: "/assets/images/accessory-kiko.png"
 summary: "简洁白瓷餐盘，边缘微上翘。"
