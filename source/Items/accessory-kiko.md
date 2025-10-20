@@ -1,7 +1,7 @@
 ---
 layout: post.html
 title: "ARMANTROUT PEARL NECKLACE"
-
+date: 2025-10-14
 
 
 cover: "/assets/images/accessory-kiko.png"
