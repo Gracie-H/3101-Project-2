@@ -2,7 +2,10 @@ import { HtmlBasePlugin } from "@11ty/eleventy";
 
 // .eleventy.js (只展示新增/修改部分)
 export default function (eleventyConfig) {
-
+	eleventyConfig.addPlugin(HtmlBasePlugin);
+	// ...你现有的配置保持不变
+  
+	// 价格格式化：{{ 80 | money }} -> $80
 	eleventyConfig.addFilter("money", (n, symbol = "$") => {
 	  const num = Number(n);
 	  if (Number.isNaN(num)) return n;

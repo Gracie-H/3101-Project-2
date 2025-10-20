@@ -25,28 +25,34 @@ templateEngineOverride: njk
   
 </div>
 
-{% for post in collections.entry | reverse %}
-  {% set price = post.data.price %}
-  {% set currency = post.data.currency or "USD" %}
-  <a
-    class="item"
-    href="{{ post.url | url }}"  {# ←← 修复：加 | url #}
-    title="{{ post.data.title }}"
-    data-category="{{ post.data.category or '' }}"
-    data-price="{{ price or '' }}"
-  >
-    {% if post.data.cover %}
-      <img src="{{ post.data.cover | url }}" alt="{{ post.data.title }}">
-    {% endif %}
-    <span class="label">
-      <strong>{{ post.data.title }}</strong>
-      {% if price %}
-        <span class="price"> — ${{ price }} {{ currency }}</span>
-      {% endif %}
-    </span>
-  </a>
-{% endfor %}
+<!-- 2.5D 漂浮场景 -->
+<div id="scene">
+  <div id="space">
+    {% for post in collections.entry | reverse %}
+      {% set price = post.data.price %}
+      {% set currency = post.data.currency or "USD" %}
+      <a
+        class="item"
+        href="{{ post.url }}"
+        title="{{ post.data.title }}"
+        data-category="{{ post.data.category or '' }}"
+        data-price="{{ price or '' }}"
+      >
+        {% if post.data.cover %}
 
+        <img src="{{ post.data.cover | url }}" alt="{{ post.data.title }}">
+      {% endif %}
+      
+        <span class="label">
+          <strong>{{ post.data.title }}</strong>
+          {% if price %}
+            <span class="price"> — ${{ price }} {{ currency }}</span>
+          {% endif %}
+        </span>
+      </a>
+    {% endfor %}
+  </div>
+</div>
 
 <script>
   // ====== 选择器 ======
@@ -98,8 +104,6 @@ templateEngineOverride: njk
     const estH = Math.round(baseW * 0.66);
     const cols = Math.max(1, Math.floor((W - PADDING*2 + GAP) / (baseW + GAP)));
 
-    const visible = items.filter(el => el.style.display !== "none");
-
     let rowHeights = Array(cols).fill(0);
     items.forEach((el, i) => {
       if (el.style.display === "none") return; // 隐藏项不参与排布
@@ -115,7 +119,7 @@ templateEngineOverride: njk
       el.style.width = w + "px";
       el.style.transform = `translate3d(${left}px, ${top}px, 0)`;
 
-      rowHeights[col] += h + 32 + GAP; 
+      rowHeights[col] += h + 32 + GAP; // 32 估算标签/内边距
     });
 
     const maxH = Math.max(0, ...rowHeights);

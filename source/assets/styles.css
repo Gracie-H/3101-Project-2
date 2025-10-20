@@ -182,7 +182,7 @@ input[type="search"]:focus {
   height: 70vh;
   margin: 14px 0 28px 0;
   border-radius: var(--radius-lg);
-
+  overflow: hidden;
   background:
     radial-gradient(950px 580px at 110% -6%, rgba(207,183,157,.10), transparent 60%),
     radial-gradient(1200px 900px at -10% 110%, rgba(0,0,0,.10), transparent 50%),
@@ -227,7 +227,7 @@ input[type="search"]:focus {
   border: var(--hairline) solid var(--line);
   box-shadow: 0 14px 30px var(--elev);
   position: relative;
-
+  overflow: hidden;
   animation: float 5s ease-in-out infinite alternate;
 }
 
