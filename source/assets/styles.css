@@ -250,6 +250,9 @@ input[type="search"]:focus {
 
 /* 标签胶囊 */
 .item .label {
+  bottom: 10px;     
+  position: relative;   
+  display: block;
   display: inline-block;
   margin-top: 6px;
   padding: 4px 10px;
@@ -369,7 +372,7 @@ a:hover {
   }
 }
 
-/* ---------- 暗色下的质感加强 ---------- */
+
 @media (prefers-color-scheme: dark) {
   .filters,
   .item .label {
