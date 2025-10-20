@@ -15,8 +15,8 @@ material:
 price: 520           
 currency: USD  
 origin: "Made in Italy."
-piece_type: "plate"
-diameter_cm: 26
+
+
 permalink: "/items/vase4/"
 ---
 
