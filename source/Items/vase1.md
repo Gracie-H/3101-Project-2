@@ -1,23 +1,24 @@
 ---
 layout: post.html
-title: "Porcelain Dinner Plate 26cm"
+title: "CORSI DESIGN"
 date: 2025-10-14
 cover: "/assets/images/vase1.png"
-summary: "简洁白瓷餐盘，边缘微上翘。"
+summary: "Pink & Purple Small Twins C Vase"
 tags:
   - entry
 category: "vase"
-brand: "Iittala"
+
 material:
-  - "porcelain"
+  - "Resin."
+
 color:
-  - "white"
-style: "minimal"
-price: 100           
+  - "pink"
+
+price: 195           
 currency: USD  
-origin: "Finland"
-piece_type: "plate"
-diameter_cm: 26
+origin: "Italy"
+
+diameter_cm: · H19 x D10.5 
 permalink: "/items/vase1/"
 ---
 
