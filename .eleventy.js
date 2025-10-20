@@ -3,6 +3,9 @@ import { HtmlBasePlugin } from "@11ty/eleventy";
 
 export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(HtmlBasePlugin);
+	eleventyConfig.addPassthroughCopy("source/assets");
+	//add
+
 
 	eleventyConfig.addFilter("money", (n, symbol = "$") => {
 	  const num = Number(n);

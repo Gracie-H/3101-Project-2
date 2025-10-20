@@ -40,7 +40,8 @@ templateEngineOverride: njk
       >
         {% if post.data.cover %}
 
-        <img src="{{ post.data.cover | url }}" alt="{{ post.data.title }}">
+        <img src="{{ post.data.cover }}" alt="{{ post.data.title }}">
+
       {% endif %}
       
         <span class="label">
