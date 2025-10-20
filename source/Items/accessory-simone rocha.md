@@ -1,25 +1,26 @@
 ---
 layout: post.html
-title: "Porcelain Dinner Plate 26cm"
+title: "Simone Rocha 
+Silver Daisy Floret Hair Clip"
 date: 2025-10-14
 cover: "/assets/images/accessory-simone rocha.png"
-summary: "简洁白瓷餐盘，边缘微上翘。"
+
 tags:
   - entry
 category: "accessory"
 
 
 material:
-  - "porcelain"
+  - "Brass, resin, crystal"
 color:
-  - "white"
+  - "Pearl/Crystal"
 
 
 price: 130           
 currency: USD  
-origin: "Finland"
-piece_type: "plate"
-diameter_cm: 26
+origin: "Made in Italy"
+
+diameter_cm: H0.5" x W3.5"
 permalink: "/items/accessory-simone rocha/"
 ---
 

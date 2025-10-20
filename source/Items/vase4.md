@@ -2,7 +2,7 @@
 layout: post.html
 title: "Orange & Blue Medium Fioca Extra Colour Vase"
 
-cover: "/assets/images/vase1.png"
+cover: "/assets/images/vase4.png"
 summary: "Designed by Gaetano Pesce, 1995"
 tags:
   - entry

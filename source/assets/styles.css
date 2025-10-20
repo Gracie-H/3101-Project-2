@@ -296,6 +296,9 @@ input[type="search"]:focus {
   flex-wrap: wrap;
   gap: 10px 12px;
   margin-bottom: 12px;
+  justify-content: center;   
+  align-items: center;       
+  text-align: center;    
 }
 
 .chip {

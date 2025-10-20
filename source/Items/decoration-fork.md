@@ -1,22 +1,23 @@
 ---
 layout: post.html
-title: "Porcelain Dinner Plate 26cm"
+title: "Off-White Mother of Pearl Sea Creatures Spoon Set-fork"
 date: 2025-10-14
 cover: "/assets/images/decoration-fork.png"
-summary: "简洁白瓷餐盘，边缘微上翘。"
+summary: "Set of two hand-carved mother-of-pearl sculptural spoons in off-white. "
 tags:
   - entry
 category: "decoration"
-brand: "Iittala"
+
 material:
-  - "porcelain"
+  - "pearl"
 color:
-  - "white"
-style: "minimal"
+  - "Mother of Pearl"
+
+
 price: 170           
 currency: USD  
-origin: "Finland"
-piece_type: "plate"
-diameter_cm: 26
+origin: "Viet Nam"
+
+diameter_cm: H4.5" x W1.25"
 permalink: "/items/decoration-fork/"
 ---

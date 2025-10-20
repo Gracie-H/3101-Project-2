@@ -1,23 +1,26 @@
 ---
 layout: post.html
-title: "Porcelain Dinner Plate 26cm"
+title: "
+VITRA
+White Ball Clock
+ Designed by George Nelson"
 date: 2025-10-14
 cover: "/assets/images/decoration-clock.png"
-summary: "简洁白瓷餐盘，边缘微上翘。"
+summary: "Brass wall clock in white. 12 signature spherical beech wood accents."
 tags:
   - entry
 category: "decoration"
-brand: "Iittala"
+
 material:
-  - "porcelain"
+  - "Wood, brass."
 color:
-  - "white"
-style: "250"
+  - "Beech"
+
 price: 260           
 currency: USD  
-origin: "Finland"
-piece_type: "plate"
-diameter_cm: 26
+origin: "Poland"
+
+diameter_cm: D13"
 permalink: "/items/decoration-clock/"
 ---
 

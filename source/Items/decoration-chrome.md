@@ -1,23 +1,23 @@
 ---
 layout: post.html
-title: "Porcelain Dinner Plate 26cm"
+title: "Chrome Hearts Shot Glass-set of two"
 date: 2025-10-14
 cover: "/assets/images/decoration-chrome.png"
-summary: "简洁白瓷餐盘，边缘微上翘。"
+summary: "BACCARAT FOR CHROME HEARTS
+PYRAMID PLUS DESIGN"
 tags:
   - entry
 category: "decoration"
 
 
 material:
-  - "porcelain"
-color:
-  - "white"
-style: "1000+"
+  - "glass"
+
+style: "minimal"
 price: 1100          
 currency: USD  
-origin: "Finland"
-piece_type: "plate"
+origin: "Made in France"
+
 diameter_cm: 26
 permalink: "/items/accessory-chrome/"
 ---
