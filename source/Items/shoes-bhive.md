@@ -1,23 +1,25 @@
 ---
 layout: post.html
-title: "Porcelain Dinner Plate 26cm"
+title: "BHIVE magma mules black"
 date: 2025-10-14
 cover: "/assets/images/shoes-bhive.png"
 summary: "简洁白瓷餐盘，边缘微上翘。"
 tags:
   - entry
 category: "shoes"
-brand: "Iittala"
+
+
 material:
-  - "porcelain"
+  - "TPU + Sheepskin"
 color:
-  - "white"
-style: "minimal"
+  - "black"
+
+
 price: 170           
 currency: USD  
-origin: "Finland"
-piece_type: "plate"
-diameter_cm: 26
+origin: "China"
+
+diameter_cm: 38
 permalink: "/items/shoes-bhive/"
 ---
 

@@ -1,23 +1,23 @@
 ---
 layout: post.html
-title: "Porcelain Dinner Plate 26cm"
+title: "Eidesis Eau de Parfum"
 date: 2025-10-14
 cover: "/assets/images/perfume-aesop.png"
 summary: "简洁白瓷餐盘，边缘微上翘。"
 tags:
   - entry
 category: "perfume"
-brand: "Iittala"
+
 material:
-  - "porcelain"
+  - "glass"
 color:
-  - "white"
-style: "minimal"
+  - "brown"
+
 price: 200           
 currency: USD  
-origin: "Finland"
-piece_type: "plate"
-diameter_cm: 26
+origin: "Australia"
+
+
 permalink: "/items/perfume-aesop/"
 ---
 

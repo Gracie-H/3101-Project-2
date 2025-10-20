@@ -1,23 +1,26 @@
 ---
 layout: post.html
-title: "Porcelain Dinner Plate 26cm"
+title: "Dries Van Noten Black Embellished Mesh Slingback Ballerina Flats"
 date: 2025-10-14
 cover: "/assets/images/shoes-dvn.png"
-summary: "简洁白瓷餐盘，边缘微上翘。"
+summary: "Stretch mesh ballerina flats in black."
+
 tags:
   - entry
 category: "shoes"
-brand: "Iittala"
+
+
 material:
-  - "porcelain"
+  - "textile. Sole: synthetic, rubber."
 color:
-  - "white"
-style: "minimal"
+  - "black"
+
+
 price: 900         
 currency: USD  
-origin: "Finland"
-piece_type: "plate"
-diameter_cm: 26
+origin: "Italy"
+
+diameter_cm: 38
 permalink: "/items/shoes-dvn/"
 ---
 

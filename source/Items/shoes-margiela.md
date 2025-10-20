@@ -1,23 +1,24 @@
 ---
 layout: post.html
-title: "Porcelain Dinner Plate 26cm"
+title: "Tabi Broken Mirror New Ballerinas"
 date: 2025-10-14
 cover: "/assets/images/shoes-margiela.png"
-summary: "简洁白瓷餐盘，边缘微上翘。"
+summary: "Maison Margiela presents the Tabi new ballerinas, which take their design from ballerina shoes in the house archives. "
 tags:
   - entry
 category: "shoes"
-brand: "Iittala"
+
 material:
-  - "porcelain"
+  - "leather"
 color:
-  - "white"
+  - "sliver"
 style: "minimal"
-pprice: 900           
+
+pprice: 1250           
 currency: USD  
-origin: "Finland"
-piece_type: "plate"
-diameter_cm: 26
+origin: "Made in Italy"
+
+diameter_cm: 38
 permalink: "/items/shoes-margiela/"
 ---
 

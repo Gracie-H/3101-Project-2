@@ -1,23 +1,22 @@
 ---
 layout: post.html
-title: "Porcelain Dinner Plate 26cm"
+title: "Perfume H INK Eau de Parfum"
 date: 2025-10-14
 cover: "/assets/images/perfume-perfume H.png"
-summary: "简洁白瓷餐盘，边缘微上翘。"
+summary: "Distinctive to all who wear it, the cerebral scent of blue ink on white paper conjures late nights in dimly lit libraries."
 tags:
   - entry
 category: "perfume"
-brand: "Iittala"
+
+
 material:
-  - "porcelain"
-color:
-  - "white"
-style: "minimal"
+  - "glass"
+  
 price: 210           
 currency: USD  
-origin: "Finland"
-piece_type: "plate"
-diameter_cm: 26
+origin: "London"
+
+
 permalink: "/items/perfume-perfume H/"
 ---
 

@@ -1,23 +1,25 @@
 ---
 layout: post.html
-title: "Porcelain Dinner Plate 26cm"
+title: "Tabi pump sandals"
 date: 2025-10-14
 cover: "/assets/images/shoes-margiela2.png"
-summary: "简洁白瓷餐盘，边缘微上翘。"
+summary: "Crafted from brushed leather, the cut-out sandals feature an 8cm cylindrical heel, adjustable ankle strap and the Tabi split-toe shape, inspired by the traditional 15th century Japanese sock bearing the same name – launched for the Maison's debut collection in 1989."
+
 tags:
   - entry
 category: "shoes"
-brand: "Iittala"
+
 material:
-  - "porcelain"
+  - "leather"
 color:
   - "white"
-style: "minimal"
-price: 1300           
+
+
+price: 1420           
 currency: USD  
-origin: "Finland"
-piece_type: "plate"
-diameter_cm: 26
+origin: "Made in Italy"
+
+diameter_cm: 38
 permalink: "/items/shoes-margiela2/"
 ---
 

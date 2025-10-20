@@ -1,22 +1,22 @@
 ---
 layout: post.html
-title: "Porcelain Dinner Plate 26cm"
+title: "GAIAC 10"
 date: 2025-10-14
 cover: "/assets/images/perfume-lelabo.png"
-summary: "简洁白瓷餐盘，边缘微上翘。"
+summary: "Gaiac is a very hard, greenish wood that isn’t as dry as cedar, but is as subtle, profound, and stable."
 tags:
   - entry
 category: "perfume"
-brand: "Iittala"
+
 material:
-  - "porcelain"
+  - "glass"
 color:
   - "white"
 style: "minimal"
 price: 328           
 currency: USD  
-origin: "Finland"
-piece_type: "plate"
-diameter_cm: 26
+origin: "New York"
+
+
 permalink: "/items/perfume-lelabo/"
 ---
