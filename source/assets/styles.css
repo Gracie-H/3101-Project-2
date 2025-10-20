@@ -1,24 +1,20 @@
-/* =========================
-   Boutique — Luxury Minimal
-   ========================= */
 
-/* ---------- 主题变量 ---------- */
 :root {
-  /* 中性冷调 + 亚麻金点缀 */
+
   --ink: #0c0e12;
   --fg: #111827;
   --muted: #6b7280;
 
   --canvas: #ffffff;
-  --subtle: #f6f7f9;                /* 背景薄层 */
-  --line: #e8eaf0;                  /* 头发丝边框 */
-  --card: #fcfcfd;                  /* 卡片底色 */
+  --subtle: #f6f7f9;               
+  --line: #e8eaf0;                 
+  --card: #fcfcfd;                 
 
-  --elev: rgba(16, 24, 40, 0.06);   /* 远阴影 */
-  --elev-2: rgba(16, 24, 40, 0.14); /* 近阴影 */
+  --elev: rgba(16, 24, 40, 0.06);   
+  --elev-2: rgba(16, 24, 40, 0.14); 
 
-  --accent: #cfb79d;                /* 亚麻金 */
-  --accent-ink: #5b4a31;            /* 金属字色 */
+  --accent: #cfb79d;               
+  --accent-ink: #5b4a31;           
 
   --radius-sm: 10px;
   --radius-md: 16px;
@@ -29,14 +25,14 @@
   --fs-2: 16px;
   --fs-3: 18px;
   --fs-4: 22px;
-  --fs-5: 46px;                     /* 海报式标题 */
+  --fs-5: 46px;                    
 
   --ease: cubic-bezier(.2, .8, .2, 1);
   --hairline: 1px;
   --focus: 0 0 0 3px rgba(207, 183, 157, 0.35);
 }
 
-/* ---------- 暗色模式 ---------- */
+
 @media (prefers-color-scheme: dark) {
   :root {
     --fg: #e7ebf2;
@@ -55,7 +51,7 @@
   }
 }
 
-/* ---------- 基础 ---------- */
+
 * {
   box-sizing: border-box;
 }
@@ -76,14 +72,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ---------- 容器 ---------- */
+
 .container {
   max-width: 1160px;
   margin: 54px auto;
   padding: 0 26px;
 }
 
-/* ---------- 顶栏（半玻璃） ---------- */
+
 .site-header {
   position: sticky;
   top: 0;
@@ -135,7 +131,7 @@ small,
   color: var(--muted);
 }
 
-/* ---------- 过滤条（药丸控件） ---------- */
+
 .filters {
   position: sticky;
   top: 72px;
@@ -220,7 +216,7 @@ input[type="search"]:focus {
 
 .item img {
   width: 100% !important;
-  height: auto !important;        /* 按原比例伸缩 */
+  height: auto !important;        
   object-fit: contain;
 
   border-radius: var(--radius-lg);
@@ -271,7 +267,7 @@ input[type="search"]:focus {
   pointer-events: none;
 }
 
-/* ---------- 单品页（chips + 返回） ---------- */
+
 .post {
   max-width: 880px;
   margin: 0 auto;
@@ -281,9 +277,9 @@ input[type="search"]:focus {
 }
 
 .post-cover {
-  display: block;           /* 让 img 成为块级元素 */
-  margin: 16px auto 20px;   /* 上下留白，左右自动居中 */
-  width: clamp(320px, 70vw, 680px);  /* 控制宽度大小 */
+  display: block;          
+  margin: 16px auto 20px;   
+  width: clamp(320px, 70vw, 680px);  
   height: auto;
   object-fit: contain;
   border-radius: var(--radius-lg);
@@ -338,7 +334,7 @@ input[type="search"]:focus {
   line-height: 1.8;
 }
 
-/* ---------- 链接与可访问性 ---------- */
+
 a {
   color: inherit;
 }
@@ -352,7 +348,6 @@ a:hover {
   border-radius: 10px;
 }
 
-/* ---------- 降噪动效 ---------- */
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
@@ -360,7 +355,6 @@ a:hover {
   }
 }
 
-/* ---------- 细窄滚动条（桌面） ---------- */
 @media (hover: hover) and (pointer: fine) {
   ::-webkit-scrollbar {
     width: 10px;
@@ -387,22 +381,20 @@ a:hover {
   }
 }
 
-/* ===== Masonry（瀑布流）覆盖：放在文件最后，覆盖前面的 .item 规则 ===== */
 
-/* 1) 新容器：多列瀑布流 */
 .masonry{
-  columns: 4 280px;    /* 自动3~4列；最小列宽 280px */
+  columns: 4 280px;    
   column-gap: 40px;
   padding: 24px;
 }
 
-/* 2) 复用你现有的 .item，但改为“普通块级卡片”，禁止绝对定位与放大 */
+
 .masonry .item{
   position: static !important;
   display: block;
   width: auto;
-  margin: 0 0 28px;              /* 卡片之间竖向间距 */
-  padding: 10px;                 /* 给图片和标题留出呼吸空间 */
+  margin: 0 0 28px;              
+  padding: 10px;                
   background: color-mix(in srgb, var(--card) 92%, transparent);
   border: var(--hairline) solid var(--line);
   border-radius: 16px;
@@ -421,7 +413,7 @@ a:hover {
   
 }
 
-/* 4) 卡片标签等保持即可 */
+
 .masonry .item .label{
 
   display: block;

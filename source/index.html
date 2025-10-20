@@ -25,7 +25,7 @@ templateEngineOverride: njk
   
 </div>
 
-<!-- 2.5D 漂浮场景 -->
+
 <div id="scene">
   <div id="space">
     {% for post in collections.entry | reverse %}
@@ -63,22 +63,23 @@ templateEngineOverride: njk
   const categorySel = document.getElementById("filter-category");
   const priceSel    = document.getElementById("filter-price");
 
-  // ====== 布局参数 ======
-  const PADDING = 24;     // 画面内边距
-  const GAP     = 24;     // 卡片间距
-  const JITTER  = 10;     // 微抖动范围（像素）
 
-  // 价格区间判断
+  const PADDING = 24;     
+  const GAP     = 24;     
+  const JITTER  = 10;    
+
+
   function inPriceRange(price, token) {
-    if (!token) return true;                 // All
-    if (Number.isNaN(price)) return !token;  // 无价格仅在“All”中显示
+    if (!token) return true;                 
+    if (Number.isNaN(price)) return !token;  
 
     if (token.endsWith("+")) {
       const min = Number(token.slice(0, -1));
-      return price >= min;                  // 300+ ：>= 300
+      return price >= min;                  
     }
     const [min, max] = token.split("-").map(Number);
-    // 采用左闭右开 [min, max)
+
+
     return price >= min && price < max;
   }
 
@@ -119,21 +120,21 @@ templateEngineOverride: njk
       el.style.width = w + "px";
       el.style.transform = `translate3d(${left}px, ${top}px, 0)`;
 
-      rowHeights[col] += h + 32 + GAP; // 32 估算标签/内边距
+      rowHeights[col] += h + 32 + GAP; 
     });
 
     const maxH = Math.max(0, ...rowHeights);
     space.style.height = (maxH + PADDING) + "px";
   }
 
-  // ====== 过滤（Category + 价格区间） ======
+
   function applyFilter(){
     const C = (categorySel?.value || "").trim().toLowerCase();
     const priceToken = priceSel?.value || "";
 
     items.forEach(el => {
       const cat   = (el.dataset.category || "").toLowerCase();
-      const price = parseFloat(el.dataset.price); // 一定是纯数字
+      const price = parseFloat(el.dataset.price); 
 
       const okC     = !C || cat === C;
       const okPrice = inPriceRange(price, priceToken);
@@ -145,11 +146,11 @@ templateEngineOverride: njk
     requestAnimationFrame(layoutGrid);
   }
 
-  // 事件绑定（注意：只绑定 applyFilter 这个函数）
+  
   categorySel?.addEventListener("change", applyFilter);
   priceSel?.addEventListener("change", applyFilter);
 
-  // ====== 初始化：图片解码 → 布局 → 初次过滤 ======
+ 
   (async function init(){
     space.style.transform = "none";
     await waitImages();
