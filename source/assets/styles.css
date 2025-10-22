@@ -195,6 +195,11 @@ input[type="search"]:focus {
 }
 
 #space {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  padding: 24px;
+  justify-items: center;
   position: absolute;
   inset: 0;
   transform-style: preserve-3d;
@@ -224,13 +229,14 @@ input[type="search"]:focus {
   width: 100% !important;
   height: auto !important;        
   object-fit: contain;
+  display: block;
 
   border-radius: var(--radius-lg);
   border: var(--hairline) solid var(--line);
   box-shadow: 0 14px 30px var(--elev);
   position: relative;
   overflow: hidden;
-  animation: float 0.1s ease-in-out infinite alternate;
+
 }
 
 .item img::after {
@@ -249,31 +255,20 @@ input[type="search"]:focus {
 }
 
 
-@keyframes float {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-6px); }
-}
-
-
 
 .item .label {
-  position: absolute;  
-  bottom: 10px;  
-  z-index: 2;    
-
+  position: relative;       /* 改了不要 absolute */
+  margin-top: 10px;
+  z-index: 0;
   display: block;
-  display: inline-block;
-  margin-top: 6px;
-  padding: 4px 10px;
-  font-size: var(--fs-1);
+  padding: 6px 0;
+  text-align: center;
+  background: none;         /* 不要背景模糊 */
+  border: none;
+  box-shadow: none;
   color: var(--fg);
-  background: color-mix(in srgb, var(--canvas) 78%, transparent);
-  border: var(--hairline) solid var(--line);
-  border-radius: 10px;
-  box-shadow: 0 6px 14px var(--elev);
-  backdrop-filter: blur(6px);
-  pointer-events: none; 
 }
+
 
 .item.hidden {
   opacity: 0;
