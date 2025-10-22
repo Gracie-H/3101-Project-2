@@ -4,7 +4,7 @@ title: Home
 templateEngineOverride: njk 
 ---
 
-<!-- 过滤条：Category + Price Range -->
+<!-- Category + Price Range -->
 <div class="filters">
   <select id="filter-category" aria-label="Category">
     <option value="">All categories</option>
@@ -55,8 +55,10 @@ templateEngineOverride: njk
   </div>
 </div>
 
+
+
 <script>
-  // ====== 选择器 ======
+  //selection-filter
   const scene  = document.getElementById("scene");
   const space  = document.getElementById("space");
   const items  = Array.from(document.querySelectorAll(".item"));
@@ -69,6 +71,7 @@ templateEngineOverride: njk
   const GAP     = 24;     
   const JITTER  = 10;    
 
+//判断每个商品的价格是否落在这个区间
 
   function inPriceRange(price, token) {
     if (!token) return true;                 
@@ -84,7 +87,7 @@ templateEngineOverride: njk
     return price >= min && price < max;
   }
 
-  // 基准卡片宽度（会按屏幕自动调小/调大）
+  // size
   function cardWidthFor(w){
     if (w >= 1400) return 260;
     if (w >= 1100) return 240;
@@ -99,6 +102,9 @@ templateEngineOverride: njk
       return img && img.decode ? img.decode().catch(()=>{}) : Promise.resolve();
     }));
   }
+
+
+  //js each postion and the masonry
 
   function layoutGrid(){
     const W = scene.clientWidth;
@@ -128,7 +134,7 @@ templateEngineOverride: njk
     space.style.height = (maxH + PADDING) + "px";
   }
 
-
+// filter show or not 
   function applyFilter(){
     const C = (categorySel?.value || "").trim().toLowerCase();
     const priceToken = priceSel?.value || "";
@@ -147,7 +153,7 @@ templateEngineOverride: njk
     requestAnimationFrame(layoutGrid);
   }
 
-  
+  // to triger filter
   categorySel?.addEventListener("change", applyFilter);
   priceSel?.addEventListener("change", applyFilter);
 

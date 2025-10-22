@@ -2,7 +2,7 @@
 layout: post.html
 title: "Simone Rocha 
 Silver Daisy Floret Hair Clip"
-date: 2025-10-14
+date: 2025-01-09
 cover: "/assets/images/accessory-simone rocha.png"
 
 tags:

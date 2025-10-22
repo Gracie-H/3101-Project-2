@@ -6,16 +6,17 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy("source/assets");
 	//add
 
-
+//number only
 	eleventyConfig.addFilter("money", (n, symbol = "$") => {
 	  const num = Number(n);
 	  if (Number.isNaN(num)) return n;
 	  return symbol + (num % 1 === 0 ? num.toFixed(0) : num.toFixed(2));
 	});
 	
+	// 把静态资源复制到site
 	eleventyConfig.addPassthroughCopy({ "source/assets": "assets" });
 
-	// price
+	// price lwo to high 首页
 	eleventyConfig.addCollection("entryByPriceAsc", (api) => {
 	  return api.getFilteredByTag("entry").sort((a, b) => {
 		const pa = Number(a.data.price ?? Infinity);
@@ -25,7 +26,7 @@ export default function (eleventyConfig) {
 	});
   
 
-  
+  //文件从哪里读取，输出在哪。
 	return {
 		dir: { input: "source", includes: "_includes", output: "_site" },
 

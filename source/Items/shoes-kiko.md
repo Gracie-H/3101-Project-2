@@ -2,7 +2,7 @@
 layout: post.html
 title: "Kiko Kostadinov"
 
-date: 2025-10-14
+date: 2024-12-20
 cover: "/assets/images/shoes-kiko.png"
 summary: "SSENSE Exclusive blue & green Lella Hybrid Ballerina Flats"
 tags:

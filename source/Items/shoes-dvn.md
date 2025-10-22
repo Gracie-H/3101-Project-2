@@ -1,7 +1,7 @@
 ---
 layout: post.html
 title: "Dries Van Noten Black Embellished Mesh Slingback Ballerina Flats"
-date: 2025-10-14
+date: 2025-05-04
 cover: "/assets/images/shoes-dvn.png"
 summary: "Stretch mesh ballerina flats in black."
 

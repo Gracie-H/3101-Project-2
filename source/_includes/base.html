@@ -10,7 +10,7 @@ templateEngineOverride: njk
 
     <title>{{ title or "Piece Collections" }}</title>
 
-    <!-- Serif 标题，买手店质感 -->
+    <!-- 标题 买手店质感  show structure  to all page--> 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -18,6 +18,8 @@ templateEngineOverride: njk
       rel="stylesheet"
     >
 
+
+    //conect with css
     <link rel="stylesheet" href="/assets/styles.css">
 
     <style>
@@ -26,6 +28,9 @@ templateEngineOverride: njk
         letter-spacing: .2px;
       }
     </style>
+
+
+
   </head>
   <body>
     <header class="site-header">
@@ -37,6 +42,7 @@ templateEngineOverride: njk
       </div>
     </header>
 
+    <!-- eleventy 会把会把每个页面-->  
     <main class="container">
       {{ content | safe }}
     </main>

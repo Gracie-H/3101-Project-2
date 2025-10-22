@@ -1,7 +1,7 @@
 ---
 layout: post.html
 title: "White Opal Small Vase"
-date: 2025-10-14
+date: 2024-10-28
 cover: "/assets/images/vase2.png"
 summary: "Textured hand-blown glass vase."
 tags:

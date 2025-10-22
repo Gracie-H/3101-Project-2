@@ -33,6 +33,8 @@
 }
 
 
+/*dark mode */
+
 @media (prefers-color-scheme: dark) {
   :root {
     --fg: #e7ebf2;
@@ -79,7 +81,7 @@ body {
   padding: 0 26px;
 }
 
-
+/* 顶部栏 */
 .site-header {
   position: sticky;
   top: 0;
@@ -172,7 +174,7 @@ input[type="search"]:focus {
   box-shadow: var(--focus);
 }
 
-/* ---------- 漂浮画廊（2.5D 场景） ---------- */
+/* ---------- move ---------- */
 #scene {
   position: relative;
   height: 70vh;
@@ -209,12 +211,15 @@ input[type="search"]:focus {
   transition: opacity .22s var(--ease), transform .22s var(--ease), filter .22s var(--ease);
   will-change: transform, opacity, filter;
 }
+
 .item:hover {
   transform: translateZ(6px) ;
   filter: saturate(1.02);
 }
 #scene{ overflow:auto; }
 
+
+/* 漂浮动画*/
 .item img {
   width: 100% !important;
   height: auto !important;        
@@ -388,7 +393,7 @@ a:hover {
   }
 }
 
-
+/* pintrest style */
 .masonry{
   columns: 4 280px;    
   column-gap: 40px;

@@ -1,6 +1,8 @@
 ---
 layout: base.html
 ---
+
+
 <article class="post">
   <h1>{{ title }}</h1>
 
@@ -12,7 +14,7 @@ layout: base.html
     >
   {% endif %}
 
-  <!-- 信息徽标区（自动按字段显示） -->
+  <!-- 信息徽标区 页面内容包括了什么 内页。-->
   <div class="info">
     {% if category %}
       <span class="chip">category · {{ category }}</span>
@@ -46,38 +48,12 @@ layout: base.html
       <span class="chip">origin · {{ origin }}</span>
     {% endif %}
 
-    {# ——— 各类别的专属字段（有就显示） ——— #}
-    {% if scent_family %}
-      <span class="chip">scent · {{ scent_family }}</span>
-    {% endif %}
-    {% if concentration %}
-      <span class="chip">conc. · {{ concentration }}</span>
-    {% endif %}
-    {% if volume_ml %}
-      <span class="chip">volume · {{ volume_ml }}ml</span>
-    {% endif %}
-
-    {% if metal %}
-      <span class="chip">metal · {{ metal }}</span>
-    {% endif %}
 
     {% if size %}
       <span class="chip">size · {{ size }}</span>
     {% endif %}
 
-    {% if capacity_ml %}
-      <span class="chip">capacity · {{ capacity_ml }}ml</span>
-    {% endif %}
-    {% if height_cm %}
-      <span class="chip">height · {{ height_cm }}cm</span>
-    {% endif %}
-
-    {% if piece_type %}
-      <span class="chip">type · {{ piece_type }}</span>
-    {% endif %}
-    {% if diameter_cm %}
-      <span class="chip">diameter · {{ diameter_cm }}cm</span>
-    {% endif %}
+   
   </div>
 
   <div class="post-body">

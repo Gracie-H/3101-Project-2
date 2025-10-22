@@ -1,7 +1,7 @@
 ---
 layout: post.html
 title: "Porcelain Dinner Plate 26cm"
-date: 2025-10-14
+date: 2025-02-14
 cover: "/assets/images/decoration-cup.png"
 summary: "简洁白瓷餐盘，边缘微上翘。"
 tags:
