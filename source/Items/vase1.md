@@ -1,7 +1,7 @@
 ---
 layout: post.html
 title: "CORSI DESIGN"
-date: 2024-05-10
+
 cover: "/assets/images/vase1.png"
 summary: "Pink & Purple Small Twins C Vase"
 tags:

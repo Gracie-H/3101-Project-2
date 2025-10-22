@@ -5,8 +5,6 @@ title: "ARMANTROUT PEARL NECKLACE"
 
 
 
-date: 2024-11-14
-
 
 cover: "/assets/images/accessory-kiko.png"
 summary: "Triangular scarf-necklace hybrid with adjustable drape. Detailed with pearl-effect and hand-blown beads through leather-finished eyelets. Crafted in Italy from poplin shirting with a nylon net overlay and a 100% silk underside. Available in Oxford/Beads Pink Stripe/Red Pearl and Stripe Poplin/Beads Hazel Stripe/Beige Pearl."

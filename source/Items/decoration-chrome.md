@@ -1,7 +1,7 @@
 ---
 layout: post.html
 title: "Chrome Hearts Shot Glass-set of two"
-date: 2025-07-22
+
 cover: "/assets/images/decoration-chrome.png"
 summary: "BACCARAT FOR CHROME HEARTS
 PYRAMID PLUS DESIGN"

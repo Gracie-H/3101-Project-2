@@ -4,7 +4,7 @@ title: "
 VITRA
 White Ball Clock
  Designed by George Nelson"
-date: 2024-10-24
+
 cover: "/assets/images/decoration-clock.png"
 summary: "Brass wall clock in white. 12 signature spherical beech wood accents."
 tags:

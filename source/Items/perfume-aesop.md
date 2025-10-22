@@ -1,7 +1,7 @@
 ---
 layout: post.html
 title: "Eidesis Eau de Parfum"
-date: 2024-11-12
+
 cover: "/assets/images/perfume-aesop.png"
 summary: ""
 tags:

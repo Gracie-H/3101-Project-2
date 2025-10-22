@@ -1,7 +1,7 @@
 ---
 layout: post.html
 title: "GAIAC 10"
-date: 2025-07-28
+
 cover: "/assets/images/perfume-lelabo.png"
 summary: "Gaiac is a very hard, greenish wood that isn’t as dry as cedar, but is as subtle, profound, and stable."
 tags:
