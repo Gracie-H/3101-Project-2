@@ -160,8 +160,11 @@ input[type="search"] {
   appearance: none;
   outline: none;
   box-shadow: 0 6px 16px var(--elev);
-  transition: transform .15s var(--ease), box-shadow .15s var(--ease), border-color .15s var(--ease);
+  transition: none;
 }
+
+
+
 select:hover,
 input[type="search"]:hover {
   transform: translateY(-1px);
@@ -212,15 +215,15 @@ input[type="search"]:focus {
   display: block;
   width: clamp(200px, 22vw, 260px);
   text-decoration: none;
-  transform-style: preserve-3d;
-  transition: opacity .22s var(--ease), transform .22s var(--ease), filter .22s var(--ease);
-  will-change: transform, opacity, filter;
+  transition: none;
+
 }
 
 .item:hover {
-  transform: translateZ(6px) ;
-  filter: saturate(1.02);
+  transform: none;
+  filter: none;
 }
+
 #scene{ overflow:auto; }
 
 
@@ -257,13 +260,13 @@ input[type="search"]:focus {
 
 
 .item .label {
-  position: relative;       /* 改了不要 absolute */
+  position: relative;       
   margin-top: 10px;
   z-index: 0;
   display: block;
   padding: 6px 0;
   text-align: center;
-  background: none;         /* 不要背景模糊 */
+  background: none;         
   border: none;
   box-shadow: none;
   color: var(--fg);
