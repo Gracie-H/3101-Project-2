@@ -434,7 +434,7 @@ a:hover {
   z-index: 0;     
 }
 
-/* 5) 响应式列数 */
+
 @media (max-width: 1200px){ .masonry{ columns: 3 260px; } }
 @media (max-width: 900px){  .masonry{ columns: 2 240px; } }
 @media (max-width: 560px){  .masonry{ columns: 1 100%;  } }
