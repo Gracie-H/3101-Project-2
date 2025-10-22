@@ -1,18 +1,20 @@
+
 :root {
+
   --ink: #0c0e12;
   --fg: #111827;
   --muted: #6b7280;
 
   --canvas: #ffffff;
-  --subtle: #f6f7f9;
-  --line: #e8eaf0;
-  --card: #fcfcfd;
+  --subtle: #f6f7f9;               
+  --line: #e8eaf0;                 
+  --card: #fcfcfd;                 
 
-  --elev: rgba(16, 24, 40, 0.06);
-  --elev-2: rgba(16, 24, 40, 0.14);
+  --elev: rgba(16, 24, 40, 0.06);   
+  --elev-2: rgba(16, 24, 40, 0.14); 
 
-  --accent: #cfb79d;
-  --accent-ink: #5b4a31;
+  --accent: #cfb79d;               
+  --accent-ink: #5b4a31;           
 
   --radius-sm: 10px;
   --radius-md: 16px;
@@ -23,14 +25,16 @@
   --fs-2: 16px;
   --fs-3: 18px;
   --fs-4: 22px;
-  --fs-5: 46px;
+  --fs-5: 46px;                    
 
   --ease: cubic-bezier(.2, .8, .2, 1);
   --hairline: 1px;
   --focus: 0 0 0 3px rgba(207, 183, 157, 0.35);
 }
 
-/* -------- Dark Mode -------- */
+
+/*dark mode */
+
 @media (prefers-color-scheme: dark) {
   :root {
     --fg: #e7ebf2;
@@ -47,35 +51,37 @@
     --accent: #d7c6ab;
     --accent-ink: #eae2d6;
   }
-
-  .filters,
-  .item .label {
-    background: color-mix(in srgb, var(--card) 44%, transparent);
-    border-color: color-mix(in srgb, var(--line) 60%, transparent);
-  }
-
-  #scene {
-    box-shadow: 0 28px 56px rgba(0,0,0,.58), inset 0 1px 0 rgba(255,255,255,.06);
-  }
 }
 
-/* -------- Reset & Body -------- */
-* { box-sizing: border-box; }
 
-html, body { height: 100%; }
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
 
 body {
   margin: 0;
   color: var(--fg);
   background:
-    radial-gradient(1200px 700px at 110% -10%, rgba(207,183,157,.08), transparent 55%),
+    radial-gradient(1200px 700px at 110% -10%, rgba(207, 183, 157, .08), transparent 55%),
     linear-gradient(180deg, var(--subtle), var(--canvas) 64%);
   font: var(--fs-2)/1.7 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* -------- Header -------- */
+
+.container {
+  max-width: 1160px;
+  margin: 54px auto;
+  padding: 0 26px;
+}
+
+/* 顶部栏 */
 .site-header {
   position: sticky;
   top: 0;
@@ -86,14 +92,15 @@ body {
   border-bottom: var(--hairline) solid color-mix(in srgb, var(--line) 92%, transparent);
   box-shadow: 0 10px 26px var(--elev);
 }
-
 .site-header a {
   text-decoration: none;
   color: var(--fg);
 }
 
-/* -------- Typography -------- */
-h1, h2, h3 {
+/* ---------- 标题排版 ---------- */
+h1,
+h2,
+h3 {
   margin: 0 0 12px 0;
   line-height: 1.18;
   letter-spacing: 0.2px;
@@ -102,6 +109,7 @@ h1, h2, h3 {
 h1 {
   font-size: clamp(34px, 5.6vw, var(--fs-5));
   font-weight: 600;
+  letter-spacing: 0.3px;
 }
 
 h2 {
@@ -119,12 +127,13 @@ p {
   color: var(--fg);
 }
 
-small, .meta {
+small,
+.meta {
   font-size: var(--fs-1);
   color: var(--muted);
 }
 
-/* -------- Filter Bar -------- */
+
 .filters {
   position: sticky;
   top: 72px;
@@ -140,24 +149,32 @@ small, .meta {
   box-shadow: 0 16px 34px var(--elev);
 }
 
-select {
+select,
+input[type="search"] {
   padding: 10px 16px;
   border: var(--hairline) solid var(--line);
   border-radius: 999px;
   background: linear-gradient(180deg, color-mix(in srgb, var(--card) 96%, transparent), var(--card));
   color: var(--fg);
   font-size: var(--fs-2);
+  appearance: none;
   outline: none;
   box-shadow: 0 6px 16px var(--elev);
   transition: transform .15s var(--ease), box-shadow .15s var(--ease), border-color .15s var(--ease);
 }
-
-select:hover {
+select:hover,
+input[type="search"]:hover {
   transform: translateY(-1px);
   box-shadow: 0 12px 22px var(--elev-2);
+  border-color: color-mix(in srgb, var(--line) 70%, var(--accent) 30%);
+}
+select:focus,
+input[type="search"]:focus {
+  border-color: color-mix(in srgb, var(--accent) 64%, var(--line));
+  box-shadow: var(--focus);
 }
 
-/* -------- Collection Layout -------- */
+/* ---------- move ---------- */
 #scene {
   position: relative;
   width: 100%;
@@ -176,59 +193,60 @@ select:hover {
   grid-template-columns: repeat(4, 1fr);
   gap: 40px;
   justify-items: center;
+  align-items: start;
 }
 
 @media (max-width: 1200px) {
   #space { grid-template-columns: repeat(3, 1fr); }
 }
+
 @media (max-width: 900px) {
   #space { grid-template-columns: repeat(2, 1fr); }
 }
+
 @media (max-width: 600px) {
   #space { grid-template-columns: 1fr; }
 }
 
-/* -------- Item Card -------- */
+#scene:active {
+  cursor: grabbing;
+}
+
+
+
 .item {
   width: 100%;
   max-width: 260px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-decoration: none;
   color: var(--fg);
   background: color-mix(in srgb, var(--card) 94%, transparent);
   border: var(--hairline) solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: 0 14px 30px var(--elev);
-  padding: 14px;
-  opacity: 0;
-  animation: cardEnter 0.6s var(--ease) forwards;
   transition: transform 0.6s var(--ease), box-shadow 0.3s var(--ease);
 }
 
-/* 进入动画错落 */
-.item:nth-child(1) { animation-delay: 0.05s; }
-.item:nth-child(2) { animation-delay: 0.1s; }
-.item:nth-child(3) { animation-delay: 0.15s; }
-.item:nth-child(4) { animation-delay: 0.2s; }
-
 .item:hover {
-  animation: hoverFloat 1.8s ease-in-out infinite alternate;
   transform: translateY(-4px) scale(1.02);
   box-shadow: 0 18px 36px var(--elev-2);
 }
 
-/* -------- Item Image -------- */
+#scene{ overflow:auto; }
+
+
+/* 漂浮动画*/
 .item img {
-  width: 100%;
-  height: auto;
+  width: 100% !important;
+  height: auto !important;        
   object-fit: contain;
+
   border-radius: var(--radius-lg);
   border: var(--hairline) solid var(--line);
   box-shadow: 0 14px 30px var(--elev);
   position: relative;
   overflow: hidden;
+  animation: none;
+
 }
 
 .item img::after {
@@ -244,42 +262,193 @@ select:hover {
 
 .item:hover img::after {
   transform: translateX(0%);
+  animation: float 5s ease-in-out infinite alternate;
 }
 
-/* -------- Label -------- */
-.item .label {
-  display: block;
-  margin-top: 12px;
-  margin-bottom: 4px;
-  text-align: center;
-  font-size: var(--fs-1);
-  line-height: 1.4;
-  color: var(--fg);
-}
-
-/* -------- Animations -------- */
-@keyframes cardEnter {
-  0% {
-    opacity: 0;
-    transform: translateY(40px) scale(0.96);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes hoverFloat {
+@keyframes float {
   0% { transform: translateY(0); }
   100% { transform: translateY(-6px); }
 }
 
-/* -------- Scrollbar -------- */
+
+
+.item .label {
+  position: static;         
+  display: block;
+  margin-top: 12px;     
+  margin-bottom: 4px;     
+  text-align: center;        
+  font-size: var(--fs-1);
+  line-height: 1.4;
+  color: var(--fg);
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+
+.item.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+.post {
+  max-width: 880px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post-cover {
+  display: block;          
+  margin: 16px auto 20px;   
+  width: clamp(320px, 70vw, 680px);  
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 44px var(--elev-2);
+  border: var(--hairline) solid var(--line);
+}
+
+.post .info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 12px;
+  margin-bottom: 12px;
+  justify-content: center;   
+  align-items: center;       
+  text-align: center;    
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: var(--fs-1);
+  color: var(--accent-ink);
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  border: var(--hairline) solid color-mix(in srgb, var(--accent) 34%, var(--line));
+  border-radius: 999px;
+}
+
+.backlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  margin: 2px 0 12px;
+  font-size: var(--fs-1);
+  text-decoration: none;
+  color: var(--fg);
+  background: color-mix(in srgb, var(--canvas) 86%, transparent);
+  border: var(--hairline) solid var(--line);
+  border-radius: 999px;
+  box-shadow: 0 8px 18px var(--elev);
+  transition: transform .15s var(--ease), box-shadow .15s var(--ease);
+}
+.backlink:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px var(--elev-2);
+}
+
+.post-body p {
+  font-size: var(--fs-3);
+  line-height: 1.8;
+}
+
+
+a {
+  color: inherit;
+}
+a:hover {
+  color: var(--accent-ink);
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus);
+  border-radius: 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
-  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
   ::-webkit-scrollbar-thumb {
     background: color-mix(in srgb, var(--fg) 18%, transparent);
     border-radius: 999px;
   }
-  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
 }
+
+
+@media (prefers-color-scheme: dark) {
+  .filters,
+  .item .label {
+    background: color-mix(in srgb, var(--card) 44%, transparent);
+    border-color: color-mix(in srgb, var(--line) 60%, transparent);
+  }
+  #scene {
+    box-shadow: 0 28px 56px rgba(0,0,0,.58), inset 0 1px 0 rgba(255,255,255,.06);
+  }
+}
+
+
+.masonry{
+  columns: 4 280px;    
+  column-gap: 40px;
+  padding: 24px;
+}
+
+
+.masonry .item{
+  position: static !important;
+  display: block;
+  width: auto;
+  margin: 0 0 28px;              
+  padding: 10px;                
+  background: color-mix(in srgb, var(--card) 92%, transparent);
+  border: var(--hairline) solid var(--line);
+  border-radius: 16px;
+  transform: none !important;
+  break-inside: avoid;           /* 关键：避免卡片在两列间被拆开 */
+  box-shadow: 0 14px 30px var(--elev);
+}
+
+
+.masonry .item img{
+  width: 100% !important;
+  height: auto !important;      
+  object-fit: contain !important;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 14px 30px var(--elev);
+  
+}
+
+
+.masonry .item .label{
+
+  display: block;
+  margin-top: 130px;
+  position: relative;
+  z-index: 0;     
+}
+
+
+@media (max-width: 1200px){ .masonry{ columns: 3 260px; } }
+@media (max-width: 900px){  .masonry{ columns: 2 240px; } }
+@media (max-width: 560px){  .masonry{ columns: 1 100%;  } }
+
