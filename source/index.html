@@ -180,4 +180,8 @@ space.style.height = maxH + PADDING + "px";
     applyFilter();
     window.addEventListener("resize", layoutGrid);
   })();
+
+  window.addEventListener("load", () => {
+  layoutGrid();     
+});
 </script>
