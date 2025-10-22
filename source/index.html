@@ -157,7 +157,18 @@ space.style.height = maxH + PADDING + "px";
     requestAnimationFrame(layoutGrid);
   }
 
+  function randomJitter() {
+  items.forEach(el => {
+    const jitterX = (Math.random() * 2 - 1) * 6; // 左右抖动 6px
+    const jitterY = (Math.random() * 2 - 1) * 6; // 上下抖动 6px
+    el.style.transform = `translate3d(${jitterX}px, ${jitterY}px, 0)`;
+  });
+}
+
   // to triger filter
+  applyFilter();
+  randomJitter();
+  setInterval(randomJitter, 3500);
   categorySel?.addEventListener("change", applyFilter);
   priceSel?.addEventListener("change", applyFilter);
 
