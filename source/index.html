@@ -105,34 +105,38 @@ templateEngineOverride: njk
 
 
   //js each postion and the masonry
+  function layoutGrid() {
+  const W = scene.clientWidth;
+  const baseW = cardWidthFor(W);
+  const estH = Math.round(baseW * 0.66);
+  const cols = Math.max(1, Math.floor((W - PADDING * 2 + GAP) / (baseW + GAP)));
 
-  function layoutGrid(){
-    const W = scene.clientWidth;
-    const baseW = cardWidthFor(W);
-    const estH = Math.round(baseW * 0.66);
-    const cols = Math.max(1, Math.floor((W - PADDING*2 + GAP) / (baseW + GAP)));
+  let rowHeights = Array(cols).fill(0);
 
-    let rowHeights = Array(cols).fill(0);
-    items.forEach((el, i) => {
-      if (el.style.display === "none") return; // 隐藏项不参与排布
+ items.forEach((el) => {
+    if (el.style.display === "none") return;
 
-      const col = i % cols;
-      const img = el.querySelector("img");
-      const w   = baseW;
-      const h   = img && img.naturalWidth ? Math.round(w * (img.naturalHeight / img.naturalWidth)) : estH;
+    const col = rowHeights.indexOf(Math.min(...rowHeights));
 
-      const left = PADDING + col * (baseW + GAP) + (Math.random()*2-1)*JITTER;
-      const top  = PADDING + rowHeights[col] + (Math.random()*2-1)*JITTER;
+const img = el.querySelector("img");
+const w = baseW;
+const h = img && img.naturalWidth
+  ? Math.round(w * (img.naturalHeight / img.naturalWidth))
+  : estH;
 
-      el.style.width = w + "px";
-      el.style.transform = `translate3d(${left}px, ${top}px, 0)`;
+const left = PADDING + col * (baseW + GAP) + (Math.random() * 2 - 1) * JITTER;
+const top = PADDING + rowHeights[col] + (Math.random() * 2 - 1) * JITTER;
 
-      rowHeights[col] += h + 32 + GAP; 
-    });
+el.style.width = w + "px";
+el.style.transform = `translate3d(${left}px, ${top}px, 0)`;
 
-    const maxH = Math.max(0, ...rowHeights);
-    space.style.height = (maxH + PADDING) + "px";
-  }
+rowHeights[col] += h + 32 + GAP; 
+});
+
+const maxH = Math.max(...rowHeights);
+space.style.height = maxH + PADDING + "px";
+}
+
 
 // filter show or not 
   function applyFilter(){
