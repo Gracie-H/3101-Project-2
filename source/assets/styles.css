@@ -230,7 +230,7 @@ input[type="search"]:focus {
   box-shadow: 0 14px 30px var(--elev);
   position: relative;
   overflow: hidden;
-  animation: float 5s ease-in-out infinite alternate;
+ 
 }
 
 .item img::after {
