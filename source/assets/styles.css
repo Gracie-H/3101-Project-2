@@ -245,7 +245,8 @@ input[type="search"]:focus {
   box-shadow: 0 14px 30px var(--elev);
   position: relative;
   overflow: hidden;
-  animation: float 5s ease-in-out infinite alternate;
+  animation: none;
+
 }
 
 .item img::after {
@@ -261,6 +262,7 @@ input[type="search"]:focus {
 
 .item:hover img::after {
   transform: translateX(0%);
+  animation: float 5s ease-in-out infinite alternate;
 }
 
 @keyframes float {
@@ -271,23 +273,19 @@ input[type="search"]:focus {
 
 
 .item .label {
-  position: absolute;  
-  bottom: 10px;  
-  z-index: 2;    
-
+  position: static;         
   display: block;
-  display: inline-block;
-  margin-top: 6px;
-  padding: 4px 10px;
+  margin-top: 12px;     
+  margin-bottom: 4px;     
+  text-align: center;        
   font-size: var(--fs-1);
+  line-height: 1.4;
   color: var(--fg);
-  background: color-mix(in srgb, var(--canvas) 78%, transparent);
-  border: var(--hairline) solid var(--line);
-  border-radius: 10px;
-  box-shadow: 0 6px 14px var(--elev);
-  backdrop-filter: blur(6px);
-  pointer-events: none; 
+  background: none;
+  border: none;
+  box-shadow: none;
 }
+
 
 .item.hidden {
   opacity: 0;
@@ -378,7 +376,7 @@ a:hover {
 @media (prefers-reduced-motion: reduce) {
   * {
     transition: none !important;
-    animation: none !important;
+  
   }
 }
 
