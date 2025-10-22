@@ -1,7 +1,7 @@
 ---
 layout: post.html
 title: "Tabi Broken Mirror New Ballerinas"
-date: 2023-10-12
+date: 2024-10-12
 cover: "/assets/images/shoes-margiela.png"
 summary: "Maison Margiela presents the Tabi new ballerinas, which take their design from ballerina shoes in the house archives. "
 tags:

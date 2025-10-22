@@ -1,7 +1,7 @@
 ---
 layout: post.html
 title: "BHIVE magma mules black"
-date: 2023-06-10
+date: 2024-06-10
 cover: "/assets/images/shoes-bhive.png"
 summary: "简洁白瓷餐盘，边缘微上翘。"
 tags:
