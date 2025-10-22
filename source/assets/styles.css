@@ -210,6 +210,9 @@ input[type="search"]:focus {
   transform-style: preserve-3d;
   transition: opacity .22s var(--ease), transform .22s var(--ease), filter .22s var(--ease);
   will-change: transform, opacity, filter;
+
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out forwards;
 }
 
 .item:hover {
@@ -230,7 +233,7 @@ input[type="search"]:focus {
   box-shadow: 0 14px 30px var(--elev);
   position: relative;
   overflow: hidden;
-  animation: float 0.1s ease-in-out infinite alternate;
+  animation: none !important;
 }
 
 .item img::after {
@@ -248,10 +251,7 @@ input[type="search"]:focus {
   transform: translateX(0%);
 }
 
-@keyframes float {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-6px); }
-}
+
 
 
 
@@ -438,4 +438,8 @@ a:hover {
 @media (max-width: 1200px){ .masonry{ columns: 3 260px; } }
 @media (max-width: 900px){  .masonry{ columns: 2 240px; } }
 @media (max-width: 560px){  .masonry{ columns: 1 100%;  } }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
