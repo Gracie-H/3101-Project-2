@@ -217,16 +217,30 @@ input[type="search"]:focus {
 .item {
   width: 100%;
   max-width: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-decoration: none;
   color: var(--fg);
   background: color-mix(in srgb, var(--card) 94%, transparent);
   border: var(--hairline) solid var(--line);
   border-radius: var(--radius-lg);
   box-shadow: 0 14px 30px var(--elev);
+  padding: 14px;
+  opacity: 0;
   transition: transform 0.6s var(--ease), box-shadow 0.3s var(--ease);
 }
 
+.item:nth-child(1) { animation-delay: 0.05s; }
+.item:nth-child(2) { animation-delay: 0.1s; }
+.item:nth-child(3) { animation-delay: 0.15s; }
+.item:nth-child(4) { animation-delay: 0.2s; }
+.item:nth-child(5) { animation-delay: 0.25s; }
+.item:nth-child(6) { animation-delay: 0.3s; }
+
+
 .item:hover {
+  animation: hoverFloat 1.8s ease-in-out infinite alternate;
   transform: translateY(-4px) scale(1.02);
   box-shadow: 0 18px 36px var(--elev-2);
 }
@@ -262,7 +276,7 @@ input[type="search"]:focus {
 
 .item:hover img::after {
   transform: translateX(0%);
-  animation: float 5s ease-in-out infinite alternate;
+
 }
 
 @keyframes float {
@@ -406,7 +420,7 @@ a:hover {
   }
 }
 
-/* pintrest style */
+
 .masonry{
   columns: 4 280px;    
   column-gap: 40px;
@@ -451,4 +465,21 @@ a:hover {
 @media (max-width: 1200px){ .masonry{ columns: 3 260px; } }
 @media (max-width: 900px){  .masonry{ columns: 2 240px; } }
 @media (max-width: 560px){  .masonry{ columns: 1 100%;  } }
+/* --- 初始加载时的轻盈浮现 --- */
+@keyframes cardEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --- 轻微浮动 --- */
+@keyframes hoverFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-6px); }
+}
 
