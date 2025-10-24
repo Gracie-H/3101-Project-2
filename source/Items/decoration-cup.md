@@ -3,11 +3,11 @@ layout: post.html
 title: "Porcelain Dinner Plate 26cm"
 
 cover: "/assets/images/decoration-cup.png"
-summary: "简洁白瓷餐盘，边缘微上翘。"
+
 tags:
   - entry
 category: "decoration"
-brand: "Iittala"
+
 material:
   - "porcelain"
 color:

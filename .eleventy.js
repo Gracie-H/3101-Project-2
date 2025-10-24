@@ -16,7 +16,7 @@ export default function (eleventyConfig) {
 	// 把静态资源复制到site
 	eleventyConfig.addPassthroughCopy({ "source/assets": "assets" });
 
-	// price lwo to high 首页
+
 	eleventyConfig.addCollection("entryByPriceAsc", (api) => {
 	  return api.getFilteredByTag("entry").sort((a, b) => {
 		const pa = Number(a.data.price ?? Infinity);
